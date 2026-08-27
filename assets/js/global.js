@@ -202,6 +202,8 @@
       var slides = wrapper ? wrapper.children.length : 0;
       var desktopSlides = Number(el.dataset.slidesDesktop || 1);
       var minLoopSlides = Math.max(3, desktopSlides * 2);
+      var pagination = el.querySelector(".swiper-pagination");
+      var autoplayDelay = Number(el.dataset.autoplay || 0);
 
       if (slides < 2) {
         return;
@@ -226,10 +228,15 @@
         watchOverflow: true,
         touchEventsTarget: "container",
         loopAdditionalSlides: slides,
-        pagination: {
-          el: el.querySelector(".swiper-pagination"),
+        autoplay: autoplayDelay ? {
+          delay: autoplayDelay,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        } : false,
+        pagination: pagination ? {
+          el: pagination,
           clickable: true
-        },
+        } : false,
         breakpoints: {
           760: {
             slidesPerView: desktopSlides,
