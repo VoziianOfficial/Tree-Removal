@@ -1014,6 +1014,102 @@
   align-items: start;
 }
 
+.faq-copy-card {
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+  display: grid;
+  gap: 16px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid rgba(36, 22, 15, 0.1);
+  border-radius: 22px;
+  background:
+    linear-gradient(135deg, rgba(255, 253, 247, 0.94) 0%, rgba(242, 238, 226, 0.9) 100%),
+    radial-gradient(circle at 86% 12%, rgba(185, 123, 61, 0.18), transparent 30%);
+  box-shadow: 0 8px 0 rgba(111, 71, 41, 0.14), 0 28px 60px rgba(36, 22, 15, 0.12);
+}
+
+.faq-copy-card::after {
+  width: 74px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--caramel);
+  content: "";
+}
+
+.faq-copy-card .display-title {
+  position: relative;
+  width: fit-content;
+  font-size: clamp(34px, 3.8vw, 58px);
+  line-height: 0.96;
+  white-space: nowrap;
+}
+
+.faq-copy-card .display-title::after {
+  position: absolute;
+  right: -18px;
+  bottom: 4px;
+  width: 12px;
+  height: 12px;
+  background: var(--ochre);
+  content: "";
+  transform: rotate(45deg);
+}
+
+.faq-copy-card .body-copy {
+  max-width: 34em;
+  font-size: clamp(15px, 1.2vw, 18px);
+}
+
+.faq-section .accordion {
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+}
+
+.faq-copy-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.faq-copy-chips span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(111, 71, 41, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.72);
+  color: var(--bark);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  box-shadow: 0 4px 0 rgba(18, 11, 8, 0.07);
+}
+
+.faq-copy-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+}
+
+.faq-copy-list li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.faq-copy-list li::before {
+  position: absolute;
+  top: 0.68em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--caramel);
+  content: "";
+}
+
 /* ---------- Contact ---------- */
 
 .contact-section {
@@ -1320,6 +1416,16 @@
   .about-media {
     max-width: 680px;
     margin-inline: auto;
+  }
+
+  .faq-copy-card {
+    position: relative;
+    top: auto;
+  }
+
+  .faq-section .accordion {
+    position: relative;
+    top: auto;
   }
 
   .tree-mask {
