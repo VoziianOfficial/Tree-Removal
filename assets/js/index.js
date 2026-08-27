@@ -241,9 +241,20 @@
         chips: ["1", "translate3d(0, 0, 0) scale(1)"]
       }
     };
+    var centeredScene = window.matchMedia("(max-width: 900px)");
+    var currentStage = "1";
+
+    function layerTransform(key, transform) {
+      if ((key === "top" || key === "mid" || key === "low") && centeredScene.matches) {
+        return transform === "none" ? "translateX(-50%)" : "translateX(-50%) " + transform;
+      }
+
+      return transform;
+    }
 
     function setStage(stage) {
       var state = stages[stage] || stages["1"];
+      currentStage = stage;
 
       scene.classList.remove("is-stage-1", "is-stage-2", "is-stage-3", "is-stage-4");
       scene.classList.add("is-stage-" + stage);
@@ -254,7 +265,7 @@
         }
 
         layers[key].style.opacity = state[key][0];
-        layers[key].style.transform = state[key][1];
+        layers[key].style.transform = layerTransform(key, state[key][1]);
       });
 
       buttons.forEach(function (button) {
@@ -271,6 +282,10 @@
     });
 
     setStage("1");
+
+    centeredScene.addEventListener("change", function () {
+      setStage(currentStage);
+    });
   }
 
   document.addEventListener("DOMContentLoaded", function () {

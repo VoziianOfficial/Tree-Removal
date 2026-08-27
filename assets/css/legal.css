@@ -205,20 +205,29 @@
 @media (max-width: 980px) {
   .legal-hero-grid {
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .legal-hero p {
+    margin-inline: auto;
   }
 
   .legal-hero-object {
     width: min(220px, 52vw);
-    justify-self: start;
+    justify-self: center;
   }
 
   .legal-layout {
     grid-template-columns: 1fr;
+    justify-items: center;
   }
 
   .legal-sidebar {
     position: static;
+    width: min(100%, 720px);
     padding: 18px;
+    text-align: center;
   }
 
   .legal-side-nav,
@@ -230,16 +239,54 @@
   .legal-related span {
     grid-column: 1 / -1;
   }
+
+  .legal-side-nav a,
+  .legal-related a {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .legal-content {
+    width: min(100%, 760px);
+  }
 }
 
 @media (max-width: 560px) {
   .legal-hero {
-    padding-top: 42px;
+    padding: 42px 0 34px;
   }
 
   .legal-hero h1 {
     font-size: clamp(50px, 15vw, 82px);
+    text-align: center;
     white-space: normal;
+  }
+
+  .legal-hero p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .legal-hero-object {
+    width: min(190px, 56vw);
+  }
+
+  .legal-section {
+    padding: 28px 0 42px;
+  }
+
+  .legal-content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .legal-content h2 {
+    text-align: center;
+  }
+
+  .legal-content ul {
+    padding-left: 0;
+    list-style-position: inside;
   }
 
   .legal-side-nav,

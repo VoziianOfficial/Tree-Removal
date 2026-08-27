@@ -55,4 +55,42 @@
       }, { passive: true });
     });
   });
+
+  var woodActions = document.querySelectorAll("[data-wood-action]");
+
+  woodActions.forEach(function (section) {
+    var buttons = section.querySelectorAll("[data-wood-trigger]");
+
+    if (!buttons.length) {
+      return;
+    }
+
+    function setState(state, activeButton) {
+      section.setAttribute("data-wood-state", state);
+
+      buttons.forEach(function (button) {
+        button.classList.toggle("is-active", button === activeButton);
+      });
+    }
+
+    buttons.forEach(function (button) {
+      var state = button.getAttribute("data-wood-trigger");
+
+      button.addEventListener("mouseenter", function () {
+        setState(state, button);
+      });
+
+      button.addEventListener("focus", function () {
+        setState(state, button);
+      });
+
+      button.addEventListener("click", function () {
+        setState(state, button);
+      });
+    });
+
+    section.addEventListener("mouseleave", function () {
+      setState("idle", null);
+    });
+  });
 })();
