@@ -8,7 +8,7 @@
 .hero-card {
   position: relative;
   width: 100%;
-  min-height: clamp(580px, calc(100svh - 106px), 720px);
+  min-height: clamp(520px, calc(100svh - 126px), 660px);
   overflow: clip;
   border-radius: 0 0 34px 34px;
   background: var(--deep);
@@ -40,7 +40,7 @@
   z-index: 3;
   display: grid;
   justify-items: center;
-  padding-top: clamp(96px, 15vh, 150px);
+  padding-top: clamp(76px, 12vh, 118px);
   color: var(--ivory);
   text-align: center;
   min-width: 0;
@@ -70,7 +70,7 @@
 
 .hero-copy {
   width: min(690px, 100%);
-  margin: 26px 0 32px;
+  margin: 20px 0 26px;
   color: rgba(251, 248, 239, 0.78);
   font-size: clamp(17px, 1.4vw, 21px);
 }
@@ -106,14 +106,14 @@
 .about-section {
   position: relative;
   overflow: clip;
-  padding: clamp(68px, 9vw, 118px) 0 clamp(64px, 8vw, 98px);
+  padding: clamp(46px, 6vw, 76px) 0 clamp(42px, 6vw, 70px);
   background: var(--cream);
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.82fr);
-  gap: clamp(44px, 7vw, 118px);
+  gap: clamp(30px, 5vw, 72px);
   align-items: center;
   min-width: 0;
 }
@@ -122,11 +122,11 @@
   position: relative;
   display: grid;
   grid-template-columns: 0.82fr 1fr;
-  gap: 24px;
+  gap: 18px;
   align-items: end;
   min-width: 0;
   overflow: clip;
-  padding: 0 0 34px;
+  padding: 0 0 18px;
 }
 
 .about-media .media:first-child {
@@ -135,26 +135,33 @@
 
 .about-media .media:nth-child(2) {
   aspect-ratio: 0.88;
-  margin-bottom: 72px;
+  margin-bottom: 42px;
 }
 
 .about-copy {
   display: grid;
-  gap: 24px;
+  gap: 18px;
   min-width: 0;
 }
 
 .about-list {
   display: grid;
-  gap: 16px;
-  margin: 8px 0 0;
+  gap: 12px;
+  margin: 2px 0 0;
 }
 
 .about-list div {
+  position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 14px;
+  gap: 8px;
   align-items: start;
+  padding: 0 74px 0 0;
+}
+
+.about-list .icon-chip {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .about-list strong {
@@ -175,16 +182,16 @@
 
 .services-section {
   overflow: clip;
-  padding: clamp(62px, 8vw, 104px) 0;
+  padding: clamp(44px, 6vw, 74px) 0;
   background: var(--ivory);
 }
 
 .section-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.58fr);
-  gap: 32px;
+  gap: 24px;
   align-items: end;
-  margin-bottom: clamp(40px, 6vw, 78px);
+  margin-bottom: clamp(26px, 4vw, 48px);
   min-width: 0;
 }
 
@@ -207,7 +214,7 @@
   display: grid;
   grid-template-columns: 1.05fr 0.85fr 0.85fr;
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  gap: 18px;
   align-items: stretch;
   min-width: 0;
 }
@@ -251,10 +258,11 @@
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 16px;
+  gap: 12px;
   align-content: end;
   min-height: 100%;
-  padding: clamp(26px, 3vw, 40px);
+  padding: clamp(22px, 2.4vw, 30px);
+  padding-top: clamp(84px, 7vw, 96px);
 }
 
 .service-tile-content h3,
@@ -294,33 +302,8 @@
 
 .service-tile--feature .service-icon-badge {
   position: absolute;
-  top: clamp(20px, 2.4vw, 30px);
-  left: clamp(20px, 2.4vw, 30px);
-}
-
-.arrow-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--ochre);
-  font-size: 13px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.arrow-link svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 180ms ease;
-}
-
-.service-tile--feature:hover .arrow-link svg,
-.service-card:hover .arrow-link svg {
-  transform: translateX(5px);
-}
-
-.arrow-link--light {
-  color: var(--ochre);
+  top: clamp(18px, 2vw, 24px);
+  right: clamp(18px, 2vw, 24px);
 }
 
 .service-card {
@@ -334,12 +317,21 @@
 }
 
 .service-card-body {
-  position: relative;
+  position: static;
   z-index: 1;
   display: grid;
   align-content: start;
-  gap: 14px;
-  padding: clamp(24px, 2.6vw, 32px);
+  gap: 12px;
+  padding: clamp(22px, 2.3vw, 28px);
+  padding-top: clamp(84px, 7vw, 94px);
+  padding-right: clamp(92px, 8vw, 106px);
+}
+
+.service-card-body .service-icon-badge,
+.service-card--accent > .service-icon-badge {
+  position: absolute;
+  top: clamp(18px, 2vw, 24px);
+  right: clamp(18px, 2vw, 24px);
 }
 
 .service-card-body p {
@@ -374,15 +366,15 @@
 }
 
 .service-card--split .service-card-body {
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .service-card--split .service-card-media {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  aspect-ratio: 1.45;
-  margin: 0 clamp(16px, 2vw, 20px) clamp(16px, 2vw, 20px);
+  aspect-ratio: 2;
+  margin: 0 clamp(14px, 1.8vw, 18px) clamp(14px, 1.8vw, 18px);
   overflow: hidden;
   border-radius: 16px;
 }
@@ -406,8 +398,10 @@
   display: grid;
   align-content: center;
   justify-items: start;
-  gap: 14px;
-  padding: clamp(26px, 3vw, 34px);
+  gap: 12px;
+  padding: clamp(22px, 2.4vw, 28px);
+  padding-top: clamp(90px, 7.5vw, 104px);
+  padding-right: clamp(92px, 8vw, 106px);
   border-radius: 24px;
   background: var(--espresso);
   color: var(--ivory);
@@ -437,20 +431,20 @@
 .wood-feature {
   position: relative;
   overflow: hidden;
-  padding: clamp(62px, 8vw, 110px) 0;
+  padding: clamp(44px, 6vw, 76px) 0;
   background: var(--cream);
 }
 
 .wood-feature-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(340px, 0.72fr);
-  gap: clamp(44px, 7vw, 100px);
+  gap: clamp(30px, 5vw, 70px);
   align-items: center;
 }
 
 .wood-object-stage {
   position: relative;
-  aspect-ratio: 1.32;
+  aspect-ratio: 1.55;
   min-height: 0;
   overflow: hidden;
   pointer-events: none;
@@ -487,16 +481,16 @@
 
 .feature-copy {
   display: grid;
-  gap: 26px;
+  gap: 18px;
 }
 
 .feature-points {
   display: grid;
-  gap: 18px;
+  gap: 12px;
 }
 
 .feature-points div {
-  padding: 20px 0;
+  padding: 14px 0;
   border-top: 1px solid var(--line);
 }
 
@@ -514,7 +508,7 @@
 .dark-mask-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(64px, 8vw, 108px) 0;
+  padding: clamp(44px, 6vw, 76px) 0;
   background: var(--deep);
   color: var(--ivory);
   --mask-parallax: 0px;
@@ -525,13 +519,13 @@
   z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1fr);
-  gap: clamp(42px, 7vw, 104px);
+  gap: clamp(30px, 5vw, 72px);
   align-items: center;
 }
 
 .tree-mask {
   position: relative;
-  aspect-ratio: 0.86;
+  aspect-ratio: 1.05;
   min-height: 0;
   pointer-events: none;
 }
@@ -566,7 +560,7 @@
 
 .dark-copy {
   display: grid;
-  gap: 34px;
+  gap: 22px;
 }
 
 .dark-copy .body-copy {
@@ -577,12 +571,20 @@
 .benefit-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px 52px;
+  gap: 18px 36px;
 }
 
 .benefit {
+  position: relative;
   display: grid;
-  gap: 14px;
+  gap: 8px;
+  padding-right: 72px;
+}
+
+.benefit .icon-chip {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .benefit .icon-chip {
@@ -606,7 +608,7 @@
 /* ---------- Process: connected route ---------- */
 
 .process-section {
-  padding: clamp(62px, 8vw, 102px) 0;
+  padding: clamp(44px, 6vw, 72px) 0;
   background: var(--cream);
 }
 
@@ -614,8 +616,8 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 26px;
-  margin-top: 56px;
+  gap: 18px;
+  margin-top: 34px;
 }
 
 .process-track::before {
@@ -631,8 +633,15 @@
 .process-step {
   position: relative;
   display: grid;
-  gap: 16px;
+  gap: 10px;
   justify-items: start;
+  padding: 0 82px 0 0;
+}
+
+.process-step .process-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .process-step:nth-child(2) {
@@ -680,15 +689,15 @@
 
 .projects-section {
   overflow: clip;
-  padding: clamp(62px, 8vw, 104px) 0;
+  padding: clamp(44px, 6vw, 74px) 0;
   background: var(--ivory);
 }
 
 .project-panorama {
-  margin: 40px 0 0;
+  margin: 26px 0 0;
   overflow: hidden;
   border-radius: 26px;
-  aspect-ratio: 2.5;
+  aspect-ratio: 3.35;
   box-shadow: var(--shadow);
 }
 
@@ -699,15 +708,15 @@
 }
 
 .project-swiper {
-  margin-top: 26px;
+  margin-top: 18px;
   contain: layout paint;
 }
 
 .project-slide {
   display: grid;
-  gap: 18px;
+  gap: 12px;
   align-content: start;
-  padding: 22px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: 22px;
   background: var(--paper);
@@ -717,7 +726,7 @@
   margin: 0;
   overflow: hidden;
   border-radius: 16px;
-  aspect-ratio: 1.7;
+  aspect-ratio: 2.1;
 }
 
 .project-slide img {
@@ -748,7 +757,7 @@
 
 .testimonials-section {
   overflow: clip;
-  padding: clamp(62px, 8vw, 104px) 0;
+  padding: clamp(44px, 6vw, 74px) 0;
   background: var(--cream);
 }
 
@@ -756,15 +765,17 @@
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.15fr);
   gap: 18px;
-  margin-top: 42px;
+  margin-top: 28px;
 }
 
 .quote-card {
   position: relative;
   display: grid;
-  min-height: 280px;
-  align-content: space-between;
-  padding: clamp(28px, 4vw, 58px);
+  gap: 18px;
+  align-content: start;
+  padding: clamp(22px, 3vw, 34px);
+  padding-top: clamp(78px, 7vw, 92px);
+  padding-right: clamp(82px, 8vw, 96px);
   border-radius: 22px;
   background: var(--caramel);
   color: var(--ivory);
@@ -773,8 +784,8 @@
 
 .quote-mark {
   position: absolute;
-  top: clamp(18px, 3vw, 30px);
-  right: clamp(18px, 3vw, 30px);
+  top: clamp(18px, 2vw, 24px);
+  right: clamp(18px, 2vw, 24px);
   width: 46px;
   height: 46px;
   opacity: 0.32;
@@ -796,20 +807,21 @@
 }
 
 .testimonial-photo {
-  aspect-ratio: 1.55;
+  aspect-ratio: 1.9;
 }
 
 .small-quotes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .small-quote {
   display: grid;
-  align-content: space-between;
-  padding: 28px;
+  gap: 14px;
+  align-content: start;
+  padding: 22px;
   border-radius: 22px;
   background: var(--paper);
 }
@@ -824,7 +836,7 @@
 .faq-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
-  gap: clamp(36px, 7vw, 100px);
+  gap: clamp(28px, 5vw, 64px);
   align-items: start;
 }
 
@@ -833,15 +845,15 @@
 .contact-section {
   position: relative;
   overflow: clip;
-  padding: clamp(62px, 8vw, 106px) 0;
+  padding: clamp(44px, 6vw, 74px) 0;
   background: var(--ivory);
 }
 
 .contact-panel {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
-  gap: clamp(36px, 6vw, 74px);
-  padding: clamp(24px, 4vw, 54px);
+  gap: clamp(26px, 4vw, 48px);
+  padding: clamp(20px, 3vw, 34px);
   border-radius: 28px;
   background: var(--cream);
   box-shadow: var(--shadow);
@@ -850,7 +862,7 @@
 
 .contact-image {
   position: relative;
-  aspect-ratio: 0.9;
+  aspect-ratio: 1.16;
 }
 
 .contact-caption {
@@ -858,7 +870,7 @@
   right: 18px;
   bottom: 18px;
   left: 18px;
-  padding: 24px;
+  padding: 18px;
   border-radius: 18px;
   background: rgba(255, 253, 247, 0.88);
   color: var(--ink);
@@ -878,8 +890,8 @@
 .contact-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 34px;
+  gap: 14px;
+  margin-top: 22px;
 }
 
 .contact-form label {
@@ -907,13 +919,13 @@
 
 .contact-form input,
 .contact-form select {
-  min-height: 58px;
+  min-height: 50px;
   padding: 0 18px;
 }
 
 .contact-form textarea {
-  min-height: 138px;
-  padding: 18px;
+  min-height: 112px;
+  padding: 14px 18px;
   resize: vertical;
 }
 
@@ -928,7 +940,7 @@
 
 .marquee-section {
   overflow: hidden;
-  padding: 26px 0;
+  padding: 18px 0;
   background: var(--espresso);
   color: var(--ivory);
 }
@@ -1103,12 +1115,12 @@
 
   .service-card--wide .service-card-media {
     min-height: 0;
-    aspect-ratio: 1.55;
+    aspect-ratio: 2;
     border-radius: 0 0 20px 20px;
   }
 
   .project-panorama {
-    aspect-ratio: 1.5;
+    aspect-ratio: 2.1;
   }
 }
 
@@ -1158,7 +1170,7 @@
   }
 
   .service-tile--feature {
-    aspect-ratio: 1.12;
+    aspect-ratio: 1.28;
   }
 
   .service-card--wide,
