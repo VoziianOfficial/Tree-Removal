@@ -17,6 +17,64 @@
     });
   }
 
+  function createIcon(name, className) {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    if (className) {
+      svg.setAttribute("class", className);
+    }
+    use.setAttribute("href", "assets/icons/sprite.svg#icon-" + name);
+    svg.appendChild(use);
+    return svg;
+  }
+
+  function ensureAccordionTrigger(trigger) {
+    if (!trigger.querySelector(".accordion-icon")) {
+      var text = document.createElement("span");
+      while (trigger.firstChild) {
+        text.appendChild(trigger.firstChild);
+      }
+      var icon = document.createElement("span");
+      icon.className = "accordion-icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.appendChild(createIcon("plus", "icon-plus"));
+      icon.appendChild(createIcon("minus", "icon-minus"));
+      trigger.appendChild(text);
+      trigger.appendChild(icon);
+    }
+  }
+
+  function setupUiIcons() {
+    document.querySelectorAll(".arrow-link").forEach(function (link) {
+      if (!link.querySelector("svg")) {
+        link.appendChild(createIcon("arrow-right", "link-icon"));
+      }
+    });
+
+    document.querySelectorAll(".sidebar-links a").forEach(function (link) {
+      if (!link.querySelector("svg")) {
+        link.appendChild(createIcon("chevron-right", "sidebar-link-icon"));
+      }
+    });
+
+    document.querySelectorAll(".submenu-toggle").forEach(function (button) {
+      if (!button.querySelector("svg")) {
+        button.appendChild(createIcon("chevron-down", "submenu-toggle-icon"));
+      }
+    });
+
+    document.querySelectorAll(".menu-toggle").forEach(function (button) {
+      if (!button.querySelector(".menu-toggle-icon")) {
+        button.appendChild(createIcon("menu", "menu-toggle-icon menu-toggle-icon--open"));
+        button.appendChild(createIcon("x", "menu-toggle-icon menu-toggle-icon--close"));
+      }
+    });
+
+    document.querySelectorAll("[data-accordion-trigger]").forEach(ensureAccordionTrigger);
+  }
+
   function applyConfig() {
     if (config.browserTitle) {
       document.title = document.body.dataset.pageTitle || config.browserTitle;
@@ -344,6 +402,7 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     applyConfig();
+    setupUiIcons();
     setupMenu();
     setupAccordions();
     setupCookieConsent();

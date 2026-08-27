@@ -339,9 +339,12 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   font-weight: 900;
 }
 
-.sidebar-links a::after {
-  content: "->";
+.sidebar-link-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
   color: var(--caramel);
+  stroke-width: 2.2;
 }
 
 .sidebar-box p {

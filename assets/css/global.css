@@ -193,6 +193,7 @@ a {
 .submenu-toggle {
   display: inline-flex;
   align-items: center;
+  gap: 7px;
   min-height: 38px;
   padding: 0 16px;
   border-radius: 999px;
@@ -211,14 +212,17 @@ a {
   color: var(--ivory);
 }
 
-.submenu-toggle::after {
-  width: 6px;
-  height: 6px;
-  margin-left: 9px;
-  border-right: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
-  content: "";
-  transform: rotate(45deg) translateY(-2px);
+.submenu-toggle-icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  stroke-width: 2.2;
+  transition: transform 180ms ease;
+}
+
+.nav-item:hover .submenu-toggle-icon,
+.nav-item:focus-within .submenu-toggle-icon {
+  transform: translateY(1px);
 }
 
 .submenu {
@@ -343,6 +347,7 @@ a {
 }
 
 .menu-toggle {
+  position: relative;
   display: none;
   width: 46px;
   height: 46px;
@@ -353,46 +358,32 @@ a {
   color: var(--ivory);
 }
 
-.menu-toggle-lines,
-.menu-toggle-lines::before,
-.menu-toggle-lines::after {
-  display: block;
-  width: 20px;
-  height: 2px;
-  border-radius: 999px;
-  background: currentColor;
-  transition: transform 180ms ease, opacity 180ms ease;
-}
-
 .menu-toggle-lines {
-  position: relative;
+  display: none;
 }
 
-.menu-toggle-lines::before,
-.menu-toggle-lines::after {
+.menu-toggle-icon {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  stroke-width: 2.2;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.menu-toggle-icon--close {
   position: absolute;
-  left: 0;
-  content: "";
+  opacity: 0;
+  transform: scale(0.75);
 }
 
-.menu-toggle-lines::before {
-  top: -7px;
+.menu-open .menu-toggle-icon--open {
+  opacity: 0;
+  transform: scale(0.75);
 }
 
-.menu-toggle-lines::after {
-  top: 7px;
-}
-
-.menu-open .menu-toggle-lines {
-  background: transparent;
-}
-
-.menu-open .menu-toggle-lines::before {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.menu-open .menu-toggle-lines::after {
-  transform: translateY(-7px) rotate(-45deg);
+.menu-open .menu-toggle-icon--close {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .main {
