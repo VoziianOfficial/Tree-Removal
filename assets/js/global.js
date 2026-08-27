@@ -3,16 +3,41 @@
 
   var config = window.SiteConfig || {};
 
-  function setText(selector, value) {
-    document.querySelectorAll(selector).forEach(function (el) {
-      el.textContent = value || "";
-    });
+  function getConfigValue(key) {
+    if (key === "companyShortName") {
+      return config.companyShortName || config.companyName || "";
+    }
+
+    return config[key] || "";
+  }
+
+  function applyTemplate(template, value) {
+    return (template || "{value}")
+      .replace(/\{value\}/g, value || "")
+      .replace(/\{companyName\}/g, getConfigValue("companyName"))
+      .replace(/\{companyShortName\}/g, getConfigValue("companyShortName"))
+      .replace(/\{email\}/g, getConfigValue("email"));
   }
 
   function setAttr(selector, attr, value) {
     document.querySelectorAll(selector).forEach(function (el) {
       if (value) {
         el.setAttribute(attr, value);
+      }
+    });
+  }
+
+  function setConfigText() {
+    document.querySelectorAll("[data-config]").forEach(function (el) {
+      el.textContent = getConfigValue(el.getAttribute("data-config"));
+    });
+  }
+
+  function setConfigAttr(selector, attr, key, template) {
+    var value = getConfigValue(key);
+    document.querySelectorAll(selector).forEach(function (el) {
+      if (value) {
+        el.setAttribute(attr, applyTemplate(template || el.getAttribute("data-config-template"), value));
       }
     });
   }
@@ -76,9 +101,7 @@
   }
 
   function applyConfig() {
-    if (config.browserTitle) {
-      document.title = document.body.dataset.pageTitle || config.browserTitle;
-    }
+    document.title = getConfigValue("browserTitle") || document.title;
 
     var favicon = document.querySelector('link[rel="icon"]');
     if (!favicon) {
@@ -87,17 +110,22 @@
       document.head.appendChild(favicon);
     }
 
-    if (config.favicon) {
-      favicon.href = config.favicon;
+    if (getConfigValue("favicon")) {
+      favicon.href = getConfigValue("favicon");
     }
 
-    setText("[data-config='companyName']", config.companyName);
-    setText("[data-config='companyShortName']", config.companyShortName || config.companyName);
-    setText("[data-config='email']", config.email);
-    setText("[data-config='disclaimer']", config.disclaimer);
-    setAttr("[data-config-logo]", "src", config.logo);
-    setAttr("[data-config-logo]", "alt", "");
-    setAttr("[data-config-email-link]", "href", config.email ? "mailto:" + config.email : "");
+    setConfigText();
+    setAttr("[data-config-logo]", "src", getConfigValue("logo"));
+    setConfigAttr("[data-config-logo]", "alt", "companyShortName");
+    setConfigAttr("[data-config-email-link]", "href", "email", "mailto:{value}");
+    document.querySelectorAll("[data-config-aria-label]").forEach(function (el) {
+      var key = el.getAttribute("data-config-aria-label");
+      var value = getConfigValue(key);
+
+      if (value) {
+        el.setAttribute("aria-label", applyTemplate(el.getAttribute("data-config-template"), value));
+      }
+    });
   }
 
   function setupMenu() {

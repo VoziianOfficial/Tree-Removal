@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TimberRoot Tree Removal | Tree Services</title>
-  <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+  <title data-config="browserTitle"></title>
+  <link rel="icon" data-config-favicon type="image/png">
   <link rel="stylesheet" href="assets/vendor/swiper-bundle.min.css">
   <link rel="stylesheet" href="assets/vendor/aos.css">
   <link rel="stylesheet" href="assets/css/global.css">
@@ -14,9 +14,9 @@
   <svg style="display:none" aria-hidden="true"><use href="assets/icons/sprite.svg#icon-axe"/></svg>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Home">
-        <img class="brand-logo" data-config-logo src="assets/icons/logo.png" width="42" height="42" alt="">
-        <span data-config="companyShortName">TimberRoot</span>
+      <a class="brand" href="index.html" data-config-aria-label="companyShortName" data-config-template="{value} home" aria-label="Home">
+        <img class="brand-logo" data-config-logo width="42" height="42" alt="">
+        <span data-config="companyShortName"></span>
       </a>
       <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <span class="menu-toggle-lines" aria-hidden="true"></span>
@@ -67,7 +67,7 @@
         <div class="about-copy" data-aos="fade-up" data-aos-delay="120">
           <p class="section-kicker">Who we are</p>
           <h2 class="display-title">Control</h2>
-          <p class="body-copy">TimberRoot helps homeowners compare local tree service providers while keeping the conversation focused on safety, access, cleanup, and property protection.</p>
+          <p class="body-copy"><span data-config="companyShortName"></span> helps homeowners compare local tree service providers while keeping the conversation focused on safety, access, cleanup, and property protection.</p>
           <div class="about-list">
             <div>
               <span class="icon-chip" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#icon-layers"/></svg></span>
@@ -223,7 +223,7 @@
         <div class="dark-copy" data-aos="fade-up" data-aos-delay="120">
           <p class="section-kicker">Why choose us</p>
           <h2 class="display-title">Safe <span class="title-accent">Work</span></h2>
-          <p class="body-copy">The best tree work looks calm because the risky decisions were made before the first cut. TimberRoot helps you compare providers through that lens.</p>
+          <p class="body-copy">The best tree work looks calm because the risky decisions were made before the first cut. <span data-config="companyShortName"></span> helps you compare providers through that lens.</p>
           <div class="benefit-grid">
             <article class="benefit">
               <span class="icon-chip" aria-hidden="true"><svg><use href="assets/icons/sprite.svg#icon-shield-check"/></svg></span>
@@ -508,7 +508,7 @@
         <div class="faq-copy-card">
           <p class="section-kicker">Common questions</p>
           <h2 class="display-title">Smart <span class="title-accent">Questions</span></h2>
-          <p class="body-copy">Use these prompts when comparing tree service providers through TimberRoot. A clear request helps providers understand access, risk, cleanup expectations, and whether special equipment may be needed.</p>
+          <p class="body-copy">Use these prompts when comparing tree service providers through <span data-config="companyShortName"></span>. A clear request helps providers understand access, risk, cleanup expectations, and whether special equipment may be needed.</p>
           <div class="faq-copy-chips" aria-label="Estimate planning details">
             <span>Access</span>
             <span>Hauling</span>
@@ -544,10 +544,10 @@
           </article>
           <article class="accordion-item" data-accordion-item>
             <button class="accordion-trigger" type="button" data-accordion-trigger aria-expanded="false">
-              <span>Is TimberRoot the service provider?</span>
+              <span>Is <span data-config="companyShortName"></span> the service provider?</span>
               <span class="accordion-icon" aria-hidden="true"><svg class="icon-plus"><use href="assets/icons/sprite.svg#icon-plus"/></svg><svg class="icon-minus"><use href="assets/icons/sprite.svg#icon-minus"/></svg></span>
             </button>
-            <div class="accordion-panel"><div><p>TimberRoot is an independent aggregator. Final credentials, insurance, availability, and estimates should be confirmed directly with the selected provider.</p></div></div>
+            <div class="accordion-panel"><div><p><span data-config="companyShortName"></span> is an independent aggregator. Final credentials, insurance, availability, and estimates should be confirmed directly with the selected provider.</p></div></div>
           </article>
         </div>
       </div>
@@ -589,21 +589,21 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <span class="footer-logo-row"><img loading="lazy" data-config-logo src="assets/icons/logo.png" width="46" height="46" alt=""><span data-config="companyShortName">TimberRoot</span></span>
+        <span class="footer-logo-row"><img loading="lazy" data-config-logo width="46" height="46" alt=""><span data-config="companyShortName"></span></span>
         <p class="site-disclaimer" data-config="disclaimer"></p>
         <a class="button" href="#contact">Contact Us</a>
       </div>
       <div class="footer-grid">
         <div><h3>Explore</h3><nav class="footer-links" aria-label="Footer navigation"><a href="index.html">Home</a><a href="#about">About</a><a href="tree-removal.html">Tree Removal</a><a href="stump-grinding.html">Stump Grinding</a></nav></div>
         <div><h3>Policy</h3><nav class="footer-links" aria-label="Policy navigation"><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="cookies.html">Cookies</a></nav></div>
-        <div><h3>Email</h3><a class="footer-email" href="mailto:hello@timberroot.example" data-config="email" data-config-email-link><svg aria-hidden="true"><use href="assets/icons/sprite.svg#icon-mail"/></svg>hello@timberroot.example</a></div>
+        <div><h3>Email</h3><a class="footer-email" data-config-email-link href=""><svg aria-hidden="true"><use href="assets/icons/sprite.svg#icon-mail"/></svg><span data-config="email"></span></a></div>
       </div>
     </div>
     <div class="footer-wordmark-wrap" aria-hidden="true">
-      <span class="footer-wordmark" data-config="companyShortName">TimberRoot</span>
+      <span class="footer-wordmark" data-config="companyShortName"></span>
       <img class="footer-mark" loading="lazy" src="assets/images/hero-tree-slice.webp" width="1206" height="1016" alt="">
     </div>
-    <div class="container footer-bottom"><span>&copy; 2026 <span data-config="companyName">TimberRoot Tree Removal</span></span><span>Independent tree service aggregator</span></div>
+    <div class="container footer-bottom"><span>&copy; 2026 <span data-config="companyName"></span></span><span>Independent tree service aggregator</span></div>
   </footer>
 
   <div class="cookie-consent" data-cookie-consent>

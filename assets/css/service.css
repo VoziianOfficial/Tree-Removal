@@ -86,21 +86,21 @@
   filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.35));
 }
 
-body[data-page-title^="Stump Grinding"] .service-hero-grid {
+.stump-page .service-hero-grid {
   min-height: inherit;
 }
 
-body[data-page-title^="Stump Grinding"] .service-hero-grid > div {
+.stump-page .service-hero-grid > div {
   position: relative;
   z-index: 3;
   max-width: 780px;
 }
 
-body[data-page-title^="Stump Grinding"] .service-hero h1 {
+.stump-page .service-hero h1 {
   font-size: clamp(50px, 6.8vw, 104px);
 }
 
-body[data-page-title^="Stump Grinding"] .service-hero-object {
+.stump-page .service-hero-object {
   position: relative;
   z-index: 2;
   width: min(280px, 64vw);
@@ -1119,7 +1119,7 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
     padding-bottom: 0;
   }
 
-  body[data-page-title^="Stump Grinding"] .service-hero-object {
+  .stump-page .service-hero-object {
     justify-self: center;
     transform: translate3d(0, clamp(44px, 6vw, 66px), 0) scale(1.32) !important;
   }
@@ -1138,11 +1138,11 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
     line-height: 0.86;
   }
 
-  body[data-page-title^="Stump Grinding"] .service-hero h1 {
+  .stump-page .service-hero h1 {
     font-size: clamp(27px, 8.4vw, 38px);
   }
 
-  body[data-page-title^="Stump Grinding"] .service-hero-object {
+  .stump-page .service-hero-object {
     width: min(250px, 64vw);
     transform: translate3d(0, 50px, 0) scale(1.2) !important;
   }
