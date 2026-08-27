@@ -1023,24 +1023,59 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   }
 
   .service-cta {
-    grid-template-columns: minmax(0, 1fr) 110px;
-    min-height: 220px;
-    padding: 20px;
+    grid-template-columns: minmax(0, 1fr) 92px;
+    min-height: 168px;
+    padding: 16px;
+    gap: 12px;
+    align-items: center;
+    border-radius: 14px;
+  }
+
+  .service-cta::before {
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    border-radius: 10px;
+  }
+
+  .service-cta::after {
+    right: 18px;
+    bottom: 18px;
+    left: 18px;
   }
 
   .service-cta > div {
     max-width: none;
-    padding-right: 4px;
+    gap: 8px;
+    padding-right: 0;
   }
 
   .service-cta .display-title {
-    font-size: clamp(36px, 13vw, 54px);
+    font-size: clamp(31px, 10vw, 42px);
+    line-height: 0.9;
+  }
+
+  .service-cta p {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .service-cta .section-kicker {
+    font-size: 12px;
+  }
+
+  .service-cta .button {
+    min-height: 40px;
+    width: fit-content;
+    padding: 10px 13px;
+    font-size: 12px;
   }
 
   .service-cta img {
-    width: 160px;
-    max-height: 145px;
-    transform: translate(32px, 20px);
+    width: 128px;
+    max-height: 112px;
+    transform: translate(28px, 12px);
   }
 
   .process-section {
