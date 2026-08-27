@@ -741,33 +741,37 @@ svg[aria-hidden] use,
 .footer-wordmark-wrap {
   position: relative;
   z-index: 2;
-  overflow: hidden;
-  margin-top: clamp(30px, 5vw, 54px);
+  overflow: visible;
+  min-height: clamp(92px, 12vw, 160px);
+  margin-top: clamp(18px, 3.4vw, 40px);
   border-top: 1px solid rgba(251, 248, 239, 0.1);
 }
 
 .footer-wordmark {
+  position: relative;
+  z-index: 2;
   display: block;
   overflow-wrap: anywhere;
-  padding: 0 var(--container-padding);
-  color: rgba(251, 248, 239, 0.92);
+  padding: clamp(14px, 2vw, 24px) var(--container-padding) 0;
+  color: rgba(251, 248, 239, 0.82);
   font-family: var(--wordmark-font);
-  font-size: clamp(76px, 16vw, 232px);
+  font-size: clamp(58px, 10.5vw, 150px);
   font-weight: 700;
-  line-height: 0.78;
-  letter-spacing: 0.045em;
+  line-height: 0.86;
+  letter-spacing: 0.035em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .footer-mark {
   position: absolute;
-  z-index: -1;
-  right: clamp(-40px, 4vw, 40px);
-  top: 50%;
-  width: clamp(180px, 20vw, 340px);
-  opacity: 0.5;
-  transform: translateY(-50%);
+  z-index: 1;
+  right: clamp(18px, 8vw, 132px);
+  top: clamp(-128px, -8vw, -70px);
+  width: clamp(190px, 22vw, 350px);
+  opacity: 0.68;
+  transform: none;
+  pointer-events: none;
 }
 
 .footer-bottom {
@@ -968,6 +972,16 @@ svg[aria-hidden] use,
     font-size: clamp(20px, 4.7vw, 28px);
   }
 
+  .footer-wordmark-wrap {
+    min-height: clamp(78px, 18vw, 120px);
+  }
+
+  .footer-mark {
+    right: clamp(10px, 5vw, 40px);
+    top: clamp(-72px, -10vw, -44px);
+    width: clamp(150px, 30vw, 230px);
+  }
+
   .footer-bottom {
     flex-direction: column;
   }
@@ -988,8 +1002,8 @@ svg[aria-hidden] use,
   }
 
   .footer-wordmark {
-    font-size: clamp(58px, 18vw, 100px);
-    letter-spacing: 0.035em;
+    font-size: clamp(42px, 13vw, 72px);
+    letter-spacing: 0.025em;
   }
 
   .footer-bottom [data-config="companyName"] {
