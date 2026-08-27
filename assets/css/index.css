@@ -252,6 +252,7 @@
 .cutdown-scene-wrap {
   position: relative;
   padding: 0;
+  transform: translateX(clamp(10px, 2.2vw, 34px));
 }
 
 .cutdown-scene {
@@ -261,6 +262,7 @@
   border-radius: 0;
   background: transparent;
   isolation: isolate;
+  transform: translateX(clamp(12px, 2vw, 28px));
 }
 
 .cutdown-ground {
@@ -286,7 +288,7 @@
 
 .cutdown-tree {
   bottom: 8%;
-  left: 6%;
+  left: 16%;
   width: min(54%, 420px);
   max-width: none;
   filter: drop-shadow(0 28px 24px rgba(36, 22, 15, 0.16));
@@ -313,7 +315,7 @@
 .cutdown-stump {
   z-index: 2;
   bottom: 7%;
-  left: 19%;
+  left: 29%;
   width: min(19%, 130px);
   opacity: 0;
   transform: translate3d(0, 14px, 0) scale(0.88);
@@ -326,14 +328,14 @@
 }
 
 .cutdown-logs-a {
-  right: 1%;
+  right: -8%;
   bottom: 4%;
   width: min(42%, 330px);
   transform: translate3d(26px, 24px, 0) rotate(-2deg) scale(0.86);
 }
 
 .cutdown-logs-b {
-  right: 17%;
+  right: 8%;
   bottom: 9%;
   width: min(34%, 260px);
   transform: translate3d(-10px, 26px, 0) rotate(3deg) scale(0.72);
@@ -341,7 +343,7 @@
 
 .cutdown-chips {
   z-index: 7;
-  right: 20%;
+  right: 11%;
   bottom: 4%;
   width: min(24%, 170px);
   opacity: 0;
@@ -2552,6 +2554,7 @@
 
   .cutdown-scene-wrap {
     order: 3;
+    transform: none;
   }
 
   .cutdown-steps {
@@ -2560,10 +2563,11 @@
 
   .cutdown-scene {
     min-height: clamp(360px, 76vw, 540px);
+    transform: translateX(0);
   }
 
   .cutdown-tree {
-    left: 13%;
+    left: 18%;
     width: min(52%, 360px);
   }
 
