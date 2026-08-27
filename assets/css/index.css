@@ -284,20 +284,20 @@
   position: relative;
   z-index: 2;
   display: inline-flex;
-  width: 54px;
-  height: 54px;
+  width: 66px;
+  height: 66px;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
-  background: var(--caramel);
-  color: var(--deep);
-  box-shadow: 0 12px 22px rgba(18, 11, 8, 0.28);
+  color: inherit;
+  filter: drop-shadow(0 14px 16px rgba(18, 11, 8, 0.24));
 }
 
+.service-icon-badge img,
 .service-icon-badge svg {
-  width: 26px;
-  height: 26px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .service-tile--feature .service-icon-badge {
@@ -414,16 +414,14 @@
 }
 
 .service-icon-badge--lg {
-  width: 66px;
-  height: 66px;
-  border-radius: 18px;
-  background: rgba(251, 248, 239, 0.12);
-  color: var(--ochre);
+  width: 76px;
+  height: 76px;
 }
 
+.service-icon-badge--lg img,
 .service-icon-badge--lg svg {
-  width: 32px;
-  height: 32px;
+  width: 100%;
+  height: 100%;
 }
 
 /* ---------- Wood feature ---------- */
@@ -468,9 +466,8 @@
   z-index: 2;
   margin: 0;
   overflow: hidden;
-  border-radius: 26px;
-  box-shadow: 0 40px 60px rgba(24, 15, 10, 0.32);
   pointer-events: none;
+  filter: drop-shadow(0 34px 30px rgba(24, 15, 10, 0.24));
 }
 
 .feature-plank-photo img {
@@ -668,8 +665,8 @@
 }
 
 .process-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 31px;
+  height: 31px;
 }
 
 .process-step h3 {
