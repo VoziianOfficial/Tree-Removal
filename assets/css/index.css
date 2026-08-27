@@ -981,24 +981,62 @@
 }
 
 .small-quotes {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 14px;
+  gap: 14px;
+  margin-top: 18px;
+  padding: clamp(14px, 2vw, 22px);
+  border: 1px solid rgba(111, 71, 41, 0.26);
+  border-radius: 22px;
+  background: #8a6038 url("../images/feature-wood-planks.webp") center / cover;
+  box-shadow: 0 8px 0 rgba(36, 22, 15, 0.18), 0 24px 54px rgba(36, 22, 15, 0.16);
 }
 
 .small-quote {
+  position: relative;
   display: grid;
-  gap: 14px;
+  gap: 18px;
   align-content: start;
-  padding: 22px;
-  border-radius: 22px;
-  background: var(--paper);
+  min-height: 172px;
+  padding: 24px 22px 22px;
+  border: 1px solid rgba(99, 60, 27, 0.18);
+  border-radius: 14px;
+  background: #fff9eb;
+  box-shadow: 0 6px 0 rgba(36, 22, 15, 0.12), 0 16px 28px rgba(36, 22, 15, 0.1);
+  overflow: hidden;
+}
+
+.small-quote::before {
+  width: 34px;
+  height: 34px;
+  border: 7px solid rgba(185, 123, 61, 0.24);
+  border-radius: 50%;
+  content: "";
+}
+
+.small-quote::after {
+  position: absolute;
+  top: 0;
+  right: 18px;
+  width: 28px;
+  height: 46px;
+  background: var(--bark);
+  content: "";
 }
 
 .small-quote p {
   margin: 0;
   color: var(--ink);
+  font-weight: 750;
+  line-height: 1.42;
+}
+
+.small-quote cite {
+  color: var(--bark);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 /* ---------- FAQ ---------- */
