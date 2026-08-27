@@ -5,12 +5,15 @@
 }
 
 .legal-hero h1 {
-  max-width: 980px;
-  margin: 0;
+  width: min(calc(100vw - (var(--container-padding) * 2)), 1480px);
+  max-width: 100%;
+  margin: 0 auto;
   font-family: var(--display-font);
-  font-size: clamp(64px, 9vw, 132px);
+  font-size: clamp(52px, 8vw, 118px);
   line-height: 0.86;
+  text-align: center;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .legal-hero p {
@@ -38,7 +41,7 @@
 .legal-content h2 {
   margin: 12px 0 0;
   font-family: var(--display-font);
-  font-size: clamp(34px, 4vw, 58px);
+  font-size: clamp(32px, 3.4vw, 50px);
   line-height: 0.95;
   text-transform: uppercase;
 }

@@ -39,15 +39,18 @@
 }
 
 .service-hero h1 {
-  max-width: 980px;
-  margin: 0;
+  width: min(calc(100vw - (var(--container-padding) * 2)), 1480px);
+  max-width: 100%;
+  margin: 0 auto;
   font-family: var(--display-font);
-  font-size: clamp(54px, 9vw, 144px);
+  font-size: clamp(52px, 8vw, 124px);
   font-weight: 900;
   letter-spacing: 0;
   line-height: 0.86;
+  text-align: center;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  white-space: nowrap;
 }
 
 .service-hero p {
@@ -119,7 +122,7 @@
 .process-section h2 {
   margin: 0;
   font-family: var(--display-font);
-  font-size: clamp(46px, 5.8vw, 92px);
+  font-size: clamp(42px, 4.8vw, 78px);
   line-height: 0.9;
   text-transform: uppercase;
   overflow-wrap: anywhere;
@@ -263,7 +266,7 @@
 .sidebar-box h3 {
   margin: 0 0 16px;
   font-family: var(--display-font);
-  font-size: 34px;
+  font-size: 32px;
   line-height: 0.95;
   text-transform: uppercase;
 }
@@ -351,7 +354,7 @@
   }
 
   .service-hero h1 {
-    font-size: clamp(48px, 15vw, 62px);
+    font-size: clamp(42px, 12vw, 56px);
   }
 
   .service-process,
