@@ -257,8 +257,7 @@
       bgItems.forEach(function (item) {
         item.style.setProperty("--mask-parallax", "0px");
         item.style.setProperty("--mask-bg-parallax", "0px");
-        item.style.setProperty("--mask-shape-parallax", "0px");
-        item.style.setProperty("--mask-photo-parallax", "0px");
+        item.style.setProperty("--mask-inner-parallax", "0px");
       });
       return;
     }
@@ -287,8 +286,7 @@
         var offset = (clamped - 0.5) * 26;
         item.style.setProperty("--mask-parallax", offset.toFixed(2) + "px");
         item.style.setProperty("--mask-bg-parallax", (offset * -0.45).toFixed(2) + "px");
-        item.style.setProperty("--mask-shape-parallax", (offset * 0.9).toFixed(2) + "px");
-        item.style.setProperty("--mask-photo-parallax", (offset * 0.35).toFixed(2) + "px");
+        item.style.setProperty("--mask-inner-parallax", (offset * -2.2).toFixed(2) + "px");
       });
       ticking = false;
     }
