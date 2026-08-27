@@ -1109,7 +1109,7 @@
   text-transform: uppercase;
 }
 
-/* ---------- Process: connected route ---------- */
+/* ---------- Process: hollow rounds ---------- */
 
 .process-section {
   padding: clamp(44px, 6vw, 72px) 0;
@@ -1120,73 +1120,129 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: clamp(14px, 2vw, 26px);
   margin-top: 34px;
 }
 
 .process-track::before {
-  position: absolute;
-  top: 34px;
-  right: 8%;
-  left: 8%;
-  height: 2px;
-  background: repeating-linear-gradient(90deg, var(--line) 0 10px, transparent 10px 20px);
-  content: "";
+  display: none;
 }
 
 .process-step {
   position: relative;
   display: grid;
-  gap: 10px;
-  justify-items: start;
-  padding: 0 82px 0 0;
+  place-items: center;
+  align-content: center;
+  justify-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 300px;
+  margin-inline: auto;
+  padding: clamp(26px, 2.8vw, 38px);
+  overflow: hidden;
+  border: 1px solid rgba(99, 60, 27, 0.22);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(18, 11, 8, 0.86) 0 22%, rgba(65, 39, 24, 0.84) 23% 33%, transparent 34%),
+    radial-gradient(circle at 47% 48%, transparent 0 38%, rgba(255, 229, 176, 0.5) 39% 42%, rgba(157, 93, 42, 0.56) 43% 46%, rgba(255, 220, 153, 0.42) 47% 50%, rgba(111, 71, 41, 0.44) 51% 54%, rgba(255, 225, 160, 0.34) 55% 58%, rgba(111, 71, 41, 0.34) 59% 63%, transparent 64%),
+    url("../images/hero-tree-slice.webp") center / cover;
+  box-shadow:
+    inset 0 16px 34px rgba(255, 244, 214, 0.18),
+    inset 0 -22px 48px rgba(18, 11, 8, 0.28),
+    0 16px 34px rgba(36, 22, 15, 0.14);
+  text-align: center;
+  transition:
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms ease;
 }
 
-.process-step .process-icon {
+.process-step::before {
   position: absolute;
-  top: 0;
-  right: 0;
+  inset: 13%;
+  border: 1px solid rgba(251, 248, 239, 0.14);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(18, 11, 8, 0.9) 0 42%, rgba(18, 11, 8, 0.54) 62%, transparent 70%);
+  box-shadow:
+    inset 0 16px 30px rgba(0, 0, 0, 0.45),
+    inset 0 -8px 18px rgba(210, 161, 93, 0.14);
+  content: "";
 }
 
-.process-step:nth-child(2) {
-  margin-top: 30px;
+.process-step::after {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    linear-gradient(145deg, rgba(251, 248, 239, 0.2), transparent 34%),
+    radial-gradient(circle at 50% 102%, rgba(18, 11, 8, 0.28), transparent 45%);
+  content: "";
+  pointer-events: none;
 }
 
-.process-step:nth-child(4) {
-  margin-top: 30px;
+.process-step:hover,
+.process-step:focus-within {
+  border-color: rgba(185, 123, 61, 0.42);
+  box-shadow:
+    inset 0 16px 34px rgba(255, 244, 214, 0.2),
+    inset 0 -22px 48px rgba(18, 11, 8, 0.3),
+    0 24px 52px rgba(36, 22, 15, 0.2);
+  transform: translate3d(0, -6px, 0) scale(1.015);
 }
 
 .process-icon {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: inline-flex;
-  width: 68px;
-  height: 68px;
+  width: clamp(46px, 4.4vw, 62px);
+  height: clamp(46px, 4.4vw, 62px);
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--line);
+  margin-bottom: 10px;
+  border: 1px solid rgba(251, 248, 239, 0.16);
   border-radius: 50%;
-  background: var(--paper);
-  color: var(--caramel);
-  box-shadow: 0 16px 30px rgba(36, 22, 15, 0.12);
+  background: rgba(251, 248, 239, 0.08);
+  color: var(--ochre);
+  box-shadow: inset 0 1px 0 rgba(251, 248, 239, 0.12);
 }
 
 .process-icon svg {
-  width: 31px;
-  height: 31px;
+  width: 48%;
+  height: 48%;
 }
 
 .process-step h3 {
+  position: relative;
+  z-index: 2;
   margin: 0;
+  color: var(--ivory);
   font-family: var(--display-font);
-  font-size: 30px;
+  font-size: clamp(32px, 3.2vw, 54px);
   line-height: 0.95;
   text-transform: uppercase;
+  text-shadow: 0 8px 18px rgba(0, 0, 0, 0.34);
 }
 
 .process-step p {
+  position: absolute;
+  inset: auto 15% 16%;
+  z-index: 3;
   margin: 0;
-  color: var(--muted);
+  color: rgba(251, 248, 239, 0.84);
+  font-size: clamp(13px, 1vw, 15px);
+  font-weight: 700;
+  line-height: 1.28;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.process-step:hover p,
+.process-step:focus-within p {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ---------- Projects ---------- */
@@ -1257,6 +1313,147 @@
 .project-swiper .swiper-pagination {
   position: static;
   margin-top: 10px;
+}
+
+/* ---------- Wood steps ---------- */
+
+.wood-steps-section {
+  position: relative;
+  overflow-x: clip;
+  overflow-y: visible;
+  min-height: clamp(520px, 46vw, 650px);
+  margin-bottom: clamp(44px, 6vw, 86px);
+  padding: clamp(44px, 5vw, 66px) 0 clamp(158px, 15vw, 220px);
+  background:
+    linear-gradient(180deg, rgba(36, 21, 15, 0.88), rgba(36, 21, 15, 0.94)),
+    linear-gradient(90deg, rgba(18, 11, 8, 0.82), rgba(111, 71, 41, 0.58)),
+    url("../images/feature-wood-planks.webp") center / cover;
+  color: var(--ivory);
+  isolation: isolate;
+}
+
+.wood-steps-section::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 70% 2%, rgba(185, 123, 61, 0.16), transparent 34%);
+  content: "";
+}
+
+.wood-steps-inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 26px);
+}
+
+.wood-step-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: clamp(16px, 1.8vw, 24px);
+  align-content: start;
+  min-height: clamp(300px, 25vw, 360px);
+  padding: clamp(10px, 0.9vw, 14px) clamp(18px, 1.7vw, 28px) clamp(22px, 1.9vw, 32px);
+  overflow: hidden;
+  border: 1px solid rgba(251, 248, 239, 0.08);
+  border-radius: 22px;
+  background: rgba(48, 35, 27, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(251, 248, 239, 0.08),
+    0 22px 54px rgba(0, 0, 0, 0.24);
+  text-align: center;
+  backdrop-filter: blur(3px);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.wood-step-card:hover {
+  border-color: rgba(210, 161, 93, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(251, 248, 239, 0.1),
+    0 28px 70px rgba(0, 0, 0, 0.3);
+  transform: translate3d(0, -4px, 0);
+}
+
+.wood-step-card figure {
+  position: relative;
+  margin: 0 0 clamp(16px, 1.6vw, 26px);
+  overflow: hidden;
+  border-radius: 16px;
+  aspect-ratio: 3.1;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+}
+
+.wood-step-card figure::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(18, 11, 8, 0.08), rgba(185, 123, 61, 0.14));
+  content: "";
+}
+
+.wood-step-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9) sepia(0.08) contrast(1.04);
+}
+
+.wood-step-number {
+  position: absolute;
+  top: clamp(34px, 4vw, 58px);
+  right: 0;
+  left: 0;
+  color: var(--ivory);
+  font-family: var(--wordmark-font);
+  font-size: clamp(48px, 4.5vw, 76px);
+  font-weight: 700;
+  line-height: 0.9;
+  text-shadow: 0 12px 30px rgba(18, 11, 8, 0.36);
+  pointer-events: none;
+}
+
+.wood-step-card h2 {
+  align-self: end;
+  max-width: 10em;
+  margin: 0;
+  margin-inline: auto;
+  color: var(--ivory);
+  font-family: var(--wordmark-font);
+  font-size: clamp(34px, 3vw, 52px);
+  font-weight: 700;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.wood-step-card p {
+  max-width: 390px;
+  margin: 0 auto;
+  color: rgba(251, 248, 239, 0.78);
+  font-family: var(--wordmark-font);
+  font-size: clamp(17px, 1.18vw, 22px);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.wood-steps-boards {
+  position: absolute;
+  bottom: clamp(-70px, -5vw, -42px);
+  left: 50%;
+  z-index: 2;
+  width: min(calc(100% - (var(--container-padding) * 2)), 1480px);
+  height: clamp(170px, 16vw, 245px);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.wood-steps-board {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 20px 26px rgba(18, 11, 8, 0.26));
 }
 
 /* ---------- Testimonials ---------- */
@@ -1727,6 +1924,19 @@
     min-height: 620px;
   }
 
+  .wood-steps-section {
+    min-height: 0;
+    padding-bottom: clamp(148px, 16vw, 210px);
+  }
+
+  .wood-steps-inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .wood-step-card {
+    min-height: 0;
+  }
+
   .service-mosaic {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: auto;
@@ -1754,8 +1964,8 @@
   }
 
   .process-track {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 40px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    row-gap: 18px;
   }
 
   .process-track::before {
@@ -1928,6 +2138,11 @@
   .project-panorama {
     aspect-ratio: 3;
   }
+
+  .wood-steps-inner {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1977,10 +2192,35 @@
   .about-media,
   .service-mosaic,
   .benefit-grid,
-  .process-track,
   .service-plans-layout,
   .contact-form {
     grid-template-columns: 1fr;
+  }
+
+  .process-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .process-step {
+    max-width: 174px;
+    padding: 20px 14px;
+  }
+
+  .process-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 6px;
+  }
+
+  .process-step h3 {
+    font-size: clamp(28px, 9vw, 38px);
+  }
+
+  .process-step p {
+    inset: auto 12% 12%;
+    font-size: 12px;
   }
 
   .service-plans-section {
@@ -2096,6 +2336,50 @@
 
   .project-slide h3 {
     font-size: 24px;
+  }
+
+  .wood-steps-section {
+    margin-bottom: 42px;
+    padding: 28px 0 132px;
+  }
+
+  .wood-steps-inner {
+    gap: 12px;
+  }
+
+  .wood-step-card {
+    gap: 12px;
+    padding: 10px 16px 20px;
+    border-radius: 18px;
+  }
+
+  .wood-step-card figure {
+    margin-bottom: 12px;
+    border-radius: 13px;
+    aspect-ratio: 2.65;
+  }
+
+  .wood-step-number {
+    top: 34px;
+    font-size: clamp(48px, 15vw, 68px);
+  }
+
+  .wood-step-card h2 {
+    font-size: clamp(30px, 8.4vw, 40px);
+  }
+
+  .wood-step-card p {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .wood-steps-boards {
+    bottom: -38px;
+    height: 142px;
+  }
+
+  .wood-steps-board {
+    width: 100%;
   }
 
   .service-tile--feature,
