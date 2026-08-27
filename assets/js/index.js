@@ -185,10 +185,99 @@
     requestReveal();
   }
 
+  function setupCutdownStages() {
+    var scene = document.querySelector("[data-cutdown-scene]");
+    var buttons = document.querySelectorAll("[data-cutdown-button]");
+
+    if (!scene || !buttons.length) {
+      return;
+    }
+
+    var layers = {
+      top: scene.querySelector(".cutdown-tree-top"),
+      mid: scene.querySelector(".cutdown-tree-mid"),
+      low: scene.querySelector(".cutdown-tree-low"),
+      stump: scene.querySelector(".cutdown-stump"),
+      logsA: scene.querySelector(".cutdown-logs-a"),
+      logsB: scene.querySelector(".cutdown-logs-b"),
+      chips: scene.querySelector(".cutdown-chips")
+    };
+
+    var stages = {
+      "1": {
+        top: ["1", "none"],
+        mid: ["1", "none"],
+        low: ["1", "none"],
+        stump: ["0", "translate3d(0, 14px, 0) scale(0.88)"],
+        logsA: ["0", "translate3d(26px, 24px, 0) rotate(-2deg) scale(0.86)"],
+        logsB: ["0", "translate3d(-10px, 26px, 0) rotate(3deg) scale(0.72)"],
+        chips: ["0", "translate3d(10px, 18px, 0) scale(0.76)"]
+      },
+      "2": {
+        top: ["1", "translate3d(18px, 10px, 0) rotate(7deg)"],
+        mid: ["1", "none"],
+        low: ["1", "none"],
+        stump: ["0", "translate3d(0, 14px, 0) scale(0.88)"],
+        logsA: ["0", "translate3d(26px, 24px, 0) rotate(-2deg) scale(0.86)"],
+        logsB: ["0", "translate3d(-10px, 26px, 0) rotate(3deg) scale(0.72)"],
+        chips: ["0.56", "translate3d(-16px, 4px, 0) scale(0.66)"]
+      },
+      "3": {
+        top: ["0.82", "translate3d(42%, 44%, 0) rotate(26deg) scale(0.84)"],
+        mid: ["0.9", "translate3d(34%, 28%, 0) rotate(-18deg) scale(0.9)"],
+        low: ["1", "none"],
+        stump: ["0", "translate3d(0, 14px, 0) scale(0.88)"],
+        logsA: ["0.74", "translate3d(0, 0, 0) rotate(-2deg) scale(0.82)"],
+        logsB: ["0", "translate3d(-10px, 26px, 0) rotate(3deg) scale(0.72)"],
+        chips: ["0.78", "translate3d(0, 0, 0) scale(0.82)"]
+      },
+      "4": {
+        top: ["0", "translate3d(56%, 58%, 0) rotate(32deg) scale(0.62)"],
+        mid: ["0", "translate3d(48%, 42%, 0) rotate(-21deg) scale(0.64)"],
+        low: ["0", "translate3d(8px, 18px, 0) scale(0.64)"],
+        stump: ["1", "translate3d(0, 0, 0) scale(1)"],
+        logsA: ["1", "translate3d(0, 0, 0) rotate(-2deg) scale(1)"],
+        logsB: ["1", "translate3d(0, 0, 0) rotate(3deg) scale(0.88)"],
+        chips: ["1", "translate3d(0, 0, 0) scale(1)"]
+      }
+    };
+
+    function setStage(stage) {
+      var state = stages[stage] || stages["1"];
+
+      scene.classList.remove("is-stage-1", "is-stage-2", "is-stage-3", "is-stage-4");
+      scene.classList.add("is-stage-" + stage);
+
+      Object.keys(layers).forEach(function (key) {
+        if (!layers[key] || !state[key]) {
+          return;
+        }
+
+        layers[key].style.opacity = state[key][0];
+        layers[key].style.transform = state[key][1];
+      });
+
+      buttons.forEach(function (button) {
+        button.classList.toggle("is-active", button.dataset.stage === stage);
+      });
+    }
+
+    buttons.forEach(function (button) {
+      ["mouseenter", "focus", "click"].forEach(function (eventName) {
+        button.addEventListener(eventName, function () {
+          setStage(button.dataset.stage || "1");
+        });
+      });
+    });
+
+    setStage("1");
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     setupApproachReveal();
     setupApproachParallax();
     setupWoodFeatureCounters();
     setupLogBuildAnimation();
+    setupCutdownStages();
   });
 })();

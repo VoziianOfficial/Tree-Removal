@@ -228,6 +228,294 @@
   color: var(--muted);
 }
 
+/* ---------- Interactive cutdown scene ---------- */
+
+.cutdown-section {
+  overflow: clip;
+  padding: clamp(28px, 4vw, 54px) 0 clamp(34px, 5vw, 62px);
+  background: var(--cream);
+}
+
+.cutdown-grid {
+  display: grid;
+  grid-template-columns: minmax(330px, 0.72fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  min-width: 0;
+}
+
+.cutdown-scene-wrap,
+.cutdown-copy {
+  min-width: 0;
+}
+
+.cutdown-scene-wrap {
+  position: relative;
+  padding: 0;
+}
+
+.cutdown-scene {
+  position: relative;
+  min-height: clamp(430px, 58vw, 670px);
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+  isolation: isolate;
+}
+
+.cutdown-ground {
+  position: absolute;
+  right: 5%;
+  bottom: 9%;
+  left: 5%;
+  height: 2px;
+  background: rgba(36, 22, 15, 0.12);
+}
+
+.cutdown-layer {
+  position: absolute;
+  display: block;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transition:
+    opacity 520ms ease,
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.cutdown-tree {
+  bottom: 8%;
+  left: 6%;
+  width: min(54%, 420px);
+  max-width: none;
+  filter: drop-shadow(0 28px 24px rgba(36, 22, 15, 0.16));
+}
+
+.cutdown-tree-top {
+  z-index: 5;
+  clip-path: inset(0 0 53% 0);
+  transform-origin: 54% 36%;
+}
+
+.cutdown-tree-mid {
+  z-index: 4;
+  clip-path: inset(38% 0 25% 0);
+  transform-origin: 49% 64%;
+}
+
+.cutdown-tree-low {
+  z-index: 3;
+  clip-path: inset(67% 22% 0 27%);
+  transform-origin: 52% 88%;
+}
+
+.cutdown-stump {
+  z-index: 2;
+  bottom: 7%;
+  left: 19%;
+  width: min(19%, 130px);
+  opacity: 0;
+  transform: translate3d(0, 14px, 0) scale(0.88);
+}
+
+.cutdown-logs {
+  z-index: 6;
+  opacity: 0;
+  filter: drop-shadow(0 20px 18px rgba(36, 22, 15, 0.16));
+}
+
+.cutdown-logs-a {
+  right: 1%;
+  bottom: 4%;
+  width: min(42%, 330px);
+  transform: translate3d(26px, 24px, 0) rotate(-2deg) scale(0.86);
+}
+
+.cutdown-logs-b {
+  right: 17%;
+  bottom: 9%;
+  width: min(34%, 260px);
+  transform: translate3d(-10px, 26px, 0) rotate(3deg) scale(0.72);
+}
+
+.cutdown-chips {
+  z-index: 7;
+  right: 20%;
+  bottom: 4%;
+  width: min(24%, 170px);
+  opacity: 0;
+  transform: translate3d(10px, 18px, 0) scale(0.76);
+}
+
+.cutdown-scene.is-stage-2 .cutdown-tree-top {
+  transform: translate3d(18px, 10px, 0) rotate(7deg);
+}
+
+.cutdown-scene.is-stage-2 .cutdown-chips {
+  opacity: 0.56;
+  transform: translate3d(-16px, 4px, 0) scale(0.66);
+}
+
+.cutdown-scene.is-stage-3 .cutdown-tree-top {
+  opacity: 0.82;
+  transform: translate3d(42%, 44%, 0) rotate(26deg) scale(0.84);
+}
+
+.cutdown-scene.is-stage-3 .cutdown-tree-mid {
+  opacity: 0.9;
+  transform: translate3d(34%, 28%, 0) rotate(-18deg) scale(0.9);
+}
+
+.cutdown-scene.is-stage-3 .cutdown-logs-a {
+  opacity: 0.74;
+  transform: translate3d(0, 0, 0) rotate(-2deg) scale(0.82);
+}
+
+.cutdown-scene.is-stage-3 .cutdown-chips {
+  opacity: 0.78;
+  transform: translate3d(0, 0, 0) scale(0.82);
+}
+
+.cutdown-scene.is-stage-4 .cutdown-tree-top {
+  opacity: 0;
+  transform: translate3d(56%, 58%, 0) rotate(32deg) scale(0.62);
+}
+
+.cutdown-scene.is-stage-4 .cutdown-tree-mid {
+  opacity: 0;
+  transform: translate3d(48%, 42%, 0) rotate(-21deg) scale(0.64);
+}
+
+.cutdown-scene.is-stage-4 .cutdown-tree-low {
+  opacity: 0;
+  transform: translate3d(8px, 18px, 0) scale(0.64);
+}
+
+.cutdown-scene.is-stage-4 .cutdown-stump,
+.cutdown-scene.is-stage-4 .cutdown-logs-a,
+.cutdown-scene.is-stage-4 .cutdown-logs-b,
+.cutdown-scene.is-stage-4 .cutdown-chips {
+  opacity: 1;
+}
+
+.cutdown-scene.is-stage-4 .cutdown-stump {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.cutdown-scene.is-stage-4 .cutdown-logs-a {
+  transform: translate3d(0, 0, 0) rotate(-2deg) scale(1);
+}
+
+.cutdown-scene.is-stage-4 .cutdown-logs-b {
+  transform: translate3d(0, 0, 0) rotate(3deg) scale(0.88);
+}
+
+.cutdown-scene.is-stage-4 .cutdown-chips {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.cutdown-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.cutdown-copy .display-title {
+  max-width: 100%;
+  font-size: clamp(46px, 5vw, 78px);
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.cutdown-steps {
+  display: grid;
+  gap: 12px;
+}
+
+.cutdown-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 92px;
+  padding: 13px 16px 13px 12px;
+  border: 1px solid rgba(111, 71, 41, 0.18);
+  border-radius: 8px;
+  background: #f8f1df;
+  color: var(--ink);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 253, 247, 0.86),
+    inset 0 -1px 0 rgba(111, 71, 41, 0.09),
+    0 10px 24px rgba(36, 22, 15, 0.08);
+  text-align: left;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.cutdown-step::before,
+.cutdown-step::after {
+  position: absolute;
+  right: 12px;
+  left: 12px;
+  height: 1px;
+  background: rgba(111, 71, 41, 0.1);
+  content: "";
+}
+
+.cutdown-step::before {
+  top: 9px;
+}
+
+.cutdown-step::after {
+  bottom: 9px;
+}
+
+.cutdown-step:hover,
+.cutdown-step:focus-visible,
+.cutdown-step.is-active {
+  border-color: rgba(185, 123, 61, 0.42);
+  background: #fff7e8;
+  box-shadow: 0 12px 32px rgba(36, 22, 15, 0.1);
+  transform: translateX(4px);
+}
+
+.cutdown-step-art {
+  position: relative;
+  z-index: 1;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 10px rgba(36, 22, 15, 0.12));
+}
+
+.cutdown-step > span {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.cutdown-step strong,
+.cutdown-step small {
+  display: block;
+}
+
+.cutdown-step strong {
+  color: var(--bark);
+  font-family: var(--accent-display-font);
+  font-size: 31px;
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: none;
+}
+
+.cutdown-step small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.25;
+}
+
 /* ---------- Services: asymmetric mosaic ---------- */
 
 .services-section {
@@ -958,6 +1246,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cutdown-layer,
+  .cutdown-step {
+    transition: none;
+  }
+
   .stack-log {
     opacity: 1;
     transition: none;
@@ -2118,6 +2411,15 @@
     gap: clamp(22px, 4vw, 44px);
   }
 
+  .cutdown-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.88fr);
+    gap: clamp(20px, 3vw, 36px);
+  }
+
+  .cutdown-scene {
+    min-height: clamp(410px, 52vw, 590px);
+  }
+
   .service-plans-layout {
     grid-template-columns: 1fr;
   }
@@ -2220,6 +2522,7 @@
   }
 
   .about-grid,
+  .cutdown-grid,
   .section-head,
   .wood-feature-grid,
   .mask-grid,
@@ -2228,6 +2531,51 @@
   .faq-grid,
   .contact-panel {
     grid-template-columns: 1fr;
+  }
+
+  .cutdown-grid {
+    align-items: start;
+  }
+
+  .cutdown-copy {
+    display: contents;
+  }
+
+  .cutdown-copy .section-kicker {
+    order: 1;
+  }
+
+  .cutdown-copy .display-title {
+    order: 2;
+    max-width: 9em;
+  }
+
+  .cutdown-scene-wrap {
+    order: 3;
+  }
+
+  .cutdown-steps {
+    order: 4;
+  }
+
+  .cutdown-scene {
+    min-height: clamp(360px, 76vw, 540px);
+  }
+
+  .cutdown-tree {
+    left: 13%;
+    width: min(52%, 360px);
+  }
+
+  .cutdown-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cutdown-step,
+  .cutdown-step:hover,
+  .cutdown-step:focus-visible,
+  .cutdown-step.is-active {
+    transform: none;
   }
 
   .service-plan-card {
@@ -2369,6 +2717,77 @@
 @media (max-width: 640px) {
   .log-build-section {
     padding: 30px 0 32px;
+  }
+
+  .cutdown-section {
+    padding-block: 28px 36px;
+  }
+
+  .cutdown-grid {
+    gap: 16px;
+  }
+
+  .cutdown-scene-wrap {
+    padding: 0;
+  }
+
+  .cutdown-scene {
+    min-height: clamp(300px, 86vw, 410px);
+  }
+
+  .cutdown-copy {
+    gap: 12px;
+  }
+
+  .cutdown-copy .display-title {
+    font-size: clamp(42px, 14vw, 58px);
+  }
+
+  .cutdown-tree {
+    bottom: 8%;
+    left: 4%;
+    width: min(60%, 270px);
+  }
+
+  .cutdown-stump {
+    left: 18%;
+    width: min(21%, 86px);
+  }
+
+  .cutdown-logs-a {
+    right: -7%;
+    width: min(51%, 210px);
+  }
+
+  .cutdown-logs-b {
+    right: 13%;
+    width: min(42%, 170px);
+  }
+
+  .cutdown-chips {
+    right: 19%;
+    width: min(28%, 110px);
+  }
+
+  .cutdown-steps {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .cutdown-step {
+    min-height: 76px;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 12px;
+    padding: 10px 12px 10px 10px;
+  }
+
+  .cutdown-step-art {
+    width: 56px;
+    height: 56px;
+  }
+
+  .cutdown-step strong {
+    font-size: 27px;
   }
 
   .log-build-copy {
