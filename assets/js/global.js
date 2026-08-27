@@ -284,7 +284,8 @@
         var progress = (viewport - rect.top) / (viewport + rect.height);
         var clamped = Math.max(0, Math.min(1, progress));
         var offset = (clamped - 0.5) * Number(item.dataset.parallax || 34);
-        item.style.transform = "translate3d(0," + offset.toFixed(2) + "px,0)";
+        var scale = Number(item.dataset.parallaxScale || 1);
+        item.style.transform = "translate3d(0," + offset.toFixed(2) + "px,0) scale(" + scale + ")";
       });
       activeBgItems.forEach(function (item) {
         var rect = item.getBoundingClientRect();
