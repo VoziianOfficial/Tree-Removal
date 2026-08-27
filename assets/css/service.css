@@ -205,46 +205,174 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
 
 .process-section {
   display: grid;
-  gap: 18px;
+  grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(22px, 3.2vw, 40px);
+  align-items: start;
   min-width: 0;
+}
+
+.process-preview {
+  position: sticky;
+  top: calc(var(--header-height) + 18px);
+  display: grid;
+  gap: 14px;
+  align-self: start;
+  min-width: 0;
+}
+
+.process-media {
+  position: relative;
+  aspect-ratio: 1.45;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--espresso);
+  box-shadow: 0 22px 48px rgba(36, 22, 15, 0.16);
+}
+
+.process-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 180ms ease, transform 360ms ease;
+}
+
+.process-media img.is-changing {
+  opacity: 0;
+  transform: scale(1.025);
+}
+
+.process-summary {
+  max-width: 620px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(16px, 1.25vw, 18px);
 }
 
 .service-process {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 12px;
+  min-width: 0;
 }
 
 .service-process article {
   position: relative;
   display: grid;
-  gap: 10px;
-  align-content: start;
-  padding: 20px;
-  padding-top: 84px;
-  padding-right: 76px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: var(--paper);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  min-height: 0;
+  padding: 18px 86px 18px 22px;
+  overflow: hidden;
+  border: 1px solid rgba(111, 71, 41, 0.18);
+  border-radius: 14px;
+  background: #f8f1e4;
+  color: rgba(36, 22, 15, 0.68);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 253, 247, 0.82),
+    0 12px 28px rgba(36, 22, 15, 0.07);
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.service-process article::before {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 4px;
+  border-radius: 0 999px 999px 0;
+  background: rgba(185, 123, 61, 0.52);
+  content: "";
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.service-process article::after {
+  position: absolute;
+  right: 24px;
+  bottom: 14px;
+  left: 24px;
+  height: 1px;
+  background: rgba(111, 71, 41, 0.11);
+  content: "";
+}
+
+.service-process article:hover,
+.service-process article:focus-visible,
+.service-process article.is-active {
+  border-color: rgba(185, 123, 61, 0.34);
+  background: #fbf6ea;
+  color: var(--ink);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 253, 247, 0.9),
+    0 16px 34px rgba(36, 22, 15, 0.1);
+  transform: translateY(-2px);
+}
+
+.service-process article:hover::before,
+.service-process article:focus-visible::before,
+.service-process article.is-active::before {
+  opacity: 1;
+}
+
+.service-process article > * {
+  position: relative;
+  z-index: 1;
 }
 
 .service-process h3 {
   margin: 0 0 6px;
-  font-family: var(--display-font);
-  font-size: 30px;
-  line-height: 0.95;
+  color: var(--bark);
+  font-family: var(--wordmark-font);
+  font-size: clamp(21px, 2vw, 30px);
+  font-weight: 700;
+  line-height: 1;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
+  transition: color 180ms ease;
 }
 
 .service-process .icon-chip {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 50%;
+  right: 22px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(111, 71, 41, 0.2);
+  color: var(--bark);
+  background: #efe1ca;
+  box-shadow:
+    inset 0 0 0 5px rgba(255, 253, 247, 0.34),
+    0 8px 18px rgba(111, 71, 41, 0.12);
+  transform: translateY(-50%) rotate(-2deg);
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.service-process .icon-chip svg {
+  width: 24px;
+  height: 24px;
+}
+
+.service-process article:hover .icon-chip,
+.service-process article:focus-visible .icon-chip,
+.service-process article.is-active .icon-chip {
+  border-color: rgba(185, 123, 61, 0.34);
+  color: var(--caramel);
+  background: #f4e7cf;
+  transform: translateY(-50%) rotate(0deg) scale(1.04);
+}
+
+.service-process article:hover h3,
+.service-process article:focus-visible h3,
+.service-process article.is-active h3 {
+  color: var(--caramel);
 }
 
 .service-process p {
   margin: 0;
   color: var(--muted);
+  font-size: 15px;
 }
 
 .related-grid {
@@ -385,7 +513,8 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   .service-hero-grid,
   .overview-grid,
   .benefit-layout,
-  .service-cta {
+  .service-cta,
+  .process-section {
     grid-template-columns: 1fr;
   }
 
@@ -394,8 +523,8 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
     grid-row: 1;
   }
 
-  .service-process {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .process-preview {
+    position: static;
   }
 
   .service-hero-object,
@@ -431,9 +560,34 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
     transform: translate3d(0, 50px, 0) scale(1.2) !important;
   }
 
-  .service-process,
   .related-grid {
     grid-template-columns: 1fr;
+  }
+
+  .process-section {
+    gap: 18px;
+  }
+
+  .process-media {
+    aspect-ratio: 1.36;
+  }
+
+  .service-process article {
+    padding: 15px 70px 15px 16px;
+  }
+
+  .service-process h3 {
+    font-size: clamp(20px, 7vw, 26px);
+  }
+
+  .service-process .icon-chip {
+    right: 14px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .service-process p {
+    font-size: 14px;
   }
 
   .related-card {
