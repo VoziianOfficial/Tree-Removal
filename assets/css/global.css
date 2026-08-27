@@ -1232,6 +1232,43 @@ svg[aria-hidden] use,
     grid-template-columns: 1fr;
   }
 
+  .footer-inner {
+    justify-items: center;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    justify-items: center;
+    width: min(100%, 560px);
+  }
+
+  .footer-logo-row {
+    justify-content: center;
+  }
+
+  .footer-brand .button {
+    justify-self: center;
+  }
+
+  .footer-grid {
+    width: min(100%, 620px);
+    justify-items: center;
+    gap: 24px;
+  }
+
+  .footer-grid > div,
+  .footer-links {
+    display: grid;
+    justify-items: center;
+  }
+
+  .footer-links a,
+  .footer-email {
+    justify-content: center;
+    text-align: center;
+  }
+
   .footer-logo-row [data-config="companyName"],
   .footer-logo-row [data-config="companyShortName"] {
     max-width: calc(100vw - 112px);
@@ -1240,16 +1277,22 @@ svg[aria-hidden] use,
 
   .footer-wordmark-wrap {
     min-height: clamp(78px, 18vw, 120px);
+    text-align: center;
   }
 
   .footer-mark {
-    right: clamp(10px, 5vw, 40px);
+    right: 50%;
     top: clamp(-72px, -10vw, -44px);
     width: clamp(150px, 30vw, 230px);
+    transform: translateX(50%);
   }
 
   .footer-bottom {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
   }
 }
 
@@ -1270,10 +1313,32 @@ svg[aria-hidden] use,
   .footer-wordmark {
     font-size: clamp(42px, 13vw, 72px);
     letter-spacing: 0.025em;
+    text-align: center;
+    white-space: normal;
   }
 
   .footer-bottom [data-config="companyName"] {
     white-space: normal;
+  }
+
+  .site-footer {
+    padding-top: 42px;
+  }
+
+  .footer-inner {
+    gap: 28px;
+  }
+
+  .footer-grid {
+    gap: 22px;
+  }
+
+  .footer-grid h3 {
+    margin-bottom: 9px;
+  }
+
+  .footer-links {
+    gap: 7px;
   }
 
   .display-title {
