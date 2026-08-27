@@ -1027,6 +1027,85 @@ svg[aria-hidden] use,
   will-change: auto;
 }
 
+@keyframes heroTextFromTop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, calc(var(--hero-reveal-y, 14px) * -1), 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroTextFromBottom {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--hero-reveal-y-bottom, 16px), 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroTextFromSide {
+  from {
+    opacity: 0;
+    transform: translate3d(calc(var(--hero-reveal-x, 18px) * -1), 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroTextFromOtherSide {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--hero-reveal-x, 18px), 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-content .section-kicker,
+.service-hero h1 span:first-child,
+.legal-hero h1 span:first-child {
+  --hero-reveal-y: 14px;
+  animation: heroTextFromTop 760ms cubic-bezier(.22,.61,.36,1) 90ms both;
+}
+
+.hero-title,
+.service-hero h1 span:last-child,
+.legal-hero h1 span:last-child {
+  --hero-reveal-x: 18px;
+  animation: heroTextFromSide 820ms cubic-bezier(.22,.61,.36,1) 180ms both;
+}
+
+.service-hero h1 span:last-child,
+.legal-hero h1 span:last-child {
+  animation-name: heroTextFromOtherSide;
+}
+
+.hero-copy,
+.service-hero p,
+.legal-hero p {
+  --hero-reveal-y-bottom: 16px;
+  animation: heroTextFromBottom 780ms cubic-bezier(.22,.61,.36,1) 300ms both;
+}
+
+.hero-actions {
+  --hero-reveal-y-bottom: 16px;
+  animation: heroTextFromBottom 820ms cubic-bezier(.22,.61,.36,1) 410ms both;
+}
+
 @media (max-width: 1080px) {
   .header-cta {
     display: none;
@@ -1052,6 +1131,19 @@ svg[aria-hidden] use,
   [data-scroll-reveal] {
     --reveal-y: 12px;
     --reveal-duration: 700ms;
+  }
+
+  .hero-content .section-kicker,
+  .hero-title,
+  .hero-copy,
+  .hero-actions,
+  .service-hero h1 span,
+  .service-hero p,
+  .legal-hero h1 span,
+  .legal-hero p {
+    --hero-reveal-x: 10px;
+    --hero-reveal-y: 9px;
+    --hero-reveal-y-bottom: 10px;
   }
 
   body {
@@ -1447,5 +1539,18 @@ svg[aria-hidden] use,
     transform: none !important;
     transition-duration: 0.001ms !important;
     will-change: auto;
+  }
+
+  .hero-content .section-kicker,
+  .hero-title,
+  .hero-copy,
+  .hero-actions,
+  .service-hero h1 span,
+  .service-hero p,
+  .legal-hero h1 span,
+  .legal-hero p {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
