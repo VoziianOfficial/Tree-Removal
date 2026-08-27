@@ -607,11 +607,10 @@
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 7px;
+  gap: 6px;
   align-content: end;
   min-height: 100%;
-  padding: clamp(15px, 1.5vw, 20px);
-  padding-top: clamp(58px, 4.8vw, 66px);
+  padding: clamp(14px, 1.35vw, 18px);
 }
 
 .service-tile-content h3,
@@ -666,7 +665,7 @@
   position: relative;
   display: flex;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 20px;
   background: var(--paper);
   box-shadow: 0 20px 46px rgba(36, 22, 15, 0.1);
   min-width: 0;
@@ -677,10 +676,8 @@
   z-index: 1;
   display: grid;
   align-content: start;
-  gap: 7px;
-  padding: clamp(15px, 1.5vw, 20px);
-  padding-top: clamp(58px, 4.8vw, 66px);
-  padding-right: clamp(68px, 5.8vw, 78px);
+  gap: 6px;
+  padding: clamp(14px, 1.35vw, 18px);
 }
 
 .service-card-body .service-icon-badge,
@@ -713,7 +710,7 @@
   position: relative;
   flex: 1 1 44%;
   min-height: 0;
-  aspect-ratio: 2.15;
+  aspect-ratio: 2.5;
   overflow: hidden;
   border-radius: 0 20px 20px 0;
 }
@@ -725,15 +722,15 @@
 }
 
 .service-card--split .service-card-body {
-  padding-bottom: 4px;
+  padding-bottom: 2px;
 }
 
 .service-card--split .service-card-media {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  aspect-ratio: 2.45;
-  margin: 0 clamp(10px, 1.4vw, 14px) clamp(10px, 1.4vw, 14px);
+  aspect-ratio: 2.85;
+  margin: 0 clamp(9px, 1.2vw, 12px) clamp(9px, 1.2vw, 12px);
   overflow: hidden;
   border-radius: 16px;
 }
@@ -757,11 +754,9 @@
   display: grid;
   align-content: space-between;
   justify-items: start;
-  gap: 7px;
-  padding: clamp(15px, 1.5vw, 20px);
-  padding-top: clamp(60px, 5vw, 70px);
-  padding-right: clamp(68px, 5.8vw, 78px);
-  border-radius: 24px;
+  gap: 6px;
+  padding: clamp(14px, 1.35vw, 18px);
+  border-radius: 20px;
   background: var(--espresso);
   color: var(--ivory);
   box-shadow: var(--shadow);
@@ -3342,25 +3337,15 @@
   .service-tile-content,
   .service-card-body {
     padding: 14px;
-    padding-top: 56px;
-    padding-right: 66px;
   }
 
   .service-card--accent {
     padding: 14px;
-    padding-top: 58px;
-    padding-right: 66px;
   }
 
   .service-card--wide .service-card-media,
   .service-card--split .service-card-media {
-    aspect-ratio: 3;
-  }
-
-  .service-icon-badge,
-  .service-icon-badge--lg {
-    width: 48px;
-    height: 48px;
+    aspect-ratio: 3.25;
   }
 
   .testimonial-photo {
