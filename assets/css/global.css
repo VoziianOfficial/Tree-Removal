@@ -1273,7 +1273,7 @@ svg[aria-hidden] use,
     right: 10px;
     width: 76px;
     height: 76px;
-    background-image: url("../icons/accent-stump.png");
+    background-image: url("../icons/accent-stump.webp");
     opacity: 0.72;
     transform: rotate(8deg);
   }
