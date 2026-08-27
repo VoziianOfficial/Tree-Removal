@@ -34,7 +34,11 @@
   function setupApproachParallax() {
     var wood = document.querySelector("[data-approach-parallax]");
 
-    if (!wood || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      !wood ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(max-width: 900px)").matches
+    ) {
       return;
     }
 

@@ -1,13 +1,13 @@
 .hero-section {
   position: relative;
-  padding: 18px 0 112px;
+  padding: 18px 0 clamp(72px, 8vw, 104px);
   background: var(--cream);
   overflow: clip;
 }
 
 .hero-card {
   position: relative;
-  min-height: clamp(620px, calc(100vh - 116px), 790px);
+  min-height: clamp(590px, calc(100svh - 106px), 740px);
   overflow: visible;
   border-radius: 0 0 30px 30px;
   background: var(--deep);
@@ -44,16 +44,19 @@
   padding-top: clamp(98px, 15vh, 146px);
   color: var(--ivory);
   text-align: center;
+  min-width: 0;
 }
 
 .hero-title {
   margin: 0;
   font-family: var(--display-font);
-  font-size: clamp(64px, 8.4vw, 138px);
+  font-size: clamp(54px, 8.2vw, 132px);
   font-weight: 900;
   letter-spacing: 0;
-  line-height: 0.84;
+  line-height: 0.88;
   text-transform: uppercase;
+  max-width: 100%;
+  overflow-wrap: normal;
 }
 
 .hero-title span {
@@ -77,10 +80,11 @@
 .hero-objects {
   position: absolute;
   z-index: 4;
-  right: 3vw;
+  right: max(12px, 3vw);
   bottom: -104px;
-  left: 3vw;
+  left: max(12px, 3vw);
   pointer-events: none;
+  overflow: clip;
 }
 
 .hero-logs {
@@ -92,7 +96,7 @@
 .hero-slice {
   position: absolute;
   top: -92px;
-  right: 6vw;
+  right: max(18px, 6vw);
   z-index: 4;
   width: clamp(150px, 16vw, 260px);
   filter: drop-shadow(0 18px 28px rgba(18, 11, 8, 0.3));
@@ -100,7 +104,7 @@
 
 .hero-plank {
   position: absolute;
-  left: -3vw;
+  left: max(10px, 1.5vw);
   bottom: -32px;
   z-index: 4;
   width: min(390px, 30vw);
@@ -113,7 +117,8 @@
 
 .about-section {
   position: relative;
-  padding: clamp(80px, 11vw, 150px) 0 clamp(76px, 9vw, 118px);
+  overflow: clip;
+  padding: clamp(68px, 9vw, 118px) 0 clamp(64px, 8vw, 98px);
   background: var(--cream);
 }
 
@@ -122,6 +127,7 @@
   grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.82fr);
   gap: clamp(44px, 7vw, 118px);
   align-items: center;
+  min-width: 0;
 }
 
 .about-media {
@@ -130,6 +136,9 @@
   grid-template-columns: 0.82fr 1fr;
   gap: 24px;
   align-items: end;
+  min-width: 0;
+  overflow: clip;
+  padding: 0 0 34px;
 }
 
 .about-media .media:first-child {
@@ -143,8 +152,8 @@
 
 .floating-slice {
   position: absolute;
-  right: -58px;
-  bottom: -34px;
+  right: max(0px, calc((100vw - 100%) * -0.5 + 18px));
+  bottom: 0;
   width: clamp(150px, 17vw, 260px);
   filter: drop-shadow(0 24px 26px rgba(36, 22, 15, 0.18));
 }
@@ -152,6 +161,7 @@
 .about-copy {
   display: grid;
   gap: 24px;
+  min-width: 0;
 }
 
 .about-list {
@@ -182,7 +192,8 @@
 }
 
 .services-section {
-  padding: clamp(74px, 9vw, 124px) 0;
+  overflow: clip;
+  padding: clamp(62px, 8vw, 104px) 0;
   background: var(--ivory);
 }
 
@@ -192,6 +203,22 @@
   gap: 32px;
   align-items: end;
   margin-bottom: clamp(40px, 6vw, 78px);
+  min-width: 0;
+}
+
+.section-head > *,
+.service-mosaic > *,
+.wood-feature-grid > *,
+.mask-grid > *,
+.benefit-grid > *,
+.process-track > *,
+.project-layout > *,
+.testimonial-feature > *,
+.small-quotes > *,
+.faq-grid > *,
+.contact-panel > *,
+.contact-form > * {
+  min-width: 0;
 }
 
 .service-mosaic {
@@ -204,7 +231,7 @@
 .service-tile {
   position: relative;
   display: grid;
-  min-height: 370px;
+  aspect-ratio: 1.04;
   overflow: hidden;
   border-radius: 22px;
   background: var(--espresso);
@@ -213,7 +240,7 @@
 }
 
 .service-tile.large {
-  min-height: 520px;
+  aspect-ratio: auto;
   grid-row: span 2;
 }
 
@@ -285,7 +312,7 @@
 .wood-feature {
   position: relative;
   overflow: hidden;
-  padding: clamp(78px, 10vw, 142px) 0;
+  padding: clamp(62px, 8vw, 110px) 0;
   background: var(--cream);
 }
 
@@ -298,7 +325,9 @@
 
 .wood-object-stage {
   position: relative;
-  min-height: 520px;
+  aspect-ratio: 1.32;
+  min-height: 0;
+  overflow: clip;
 }
 
 .wood-back-word {
@@ -363,17 +392,20 @@
 .dark-mask-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(78px, 10vw, 134px) 0;
+  padding: clamp(64px, 8vw, 108px) 0;
   background: var(--deep);
   color: var(--ivory);
+  --mask-parallax: 0px;
 }
 
 .dark-mask-section::before {
   position: absolute;
-  inset: 0;
-  background: url("../images/hero-tree-removal.webp") center / cover fixed;
+  inset: -8%;
+  background: url("../images/hero-tree-removal.webp") center / cover;
   content: "";
   opacity: 0.18;
+  transform: translate3d(0, var(--mask-parallax), 0);
+  will-change: transform;
 }
 
 .dark-mask-section::after {
@@ -394,7 +426,8 @@
 
 .tree-mask {
   position: relative;
-  min-height: 640px;
+  aspect-ratio: 0.86;
+  min-height: 0;
 }
 
 .tree-mask-photo {
@@ -459,7 +492,7 @@
 
 .process-section,
 .faq-section {
-  padding: clamp(74px, 9vw, 122px) 0;
+  padding: clamp(62px, 8vw, 102px) 0;
   background: var(--cream);
 }
 
@@ -472,7 +505,7 @@
 
 .process-card {
   display: grid;
-  min-height: 270px;
+  min-height: 230px;
   align-content: space-between;
   padding: 28px;
   border: 1px solid var(--line);
@@ -494,7 +527,8 @@
 }
 
 .projects-section {
-  padding: clamp(74px, 9vw, 126px) 0;
+  overflow: clip;
+  padding: clamp(62px, 8vw, 104px) 0;
   background: var(--ivory);
 }
 
@@ -504,6 +538,12 @@
   gap: 26px;
   align-items: stretch;
   margin-top: 42px;
+  min-width: 0;
+  overflow: clip;
+}
+
+.project-layout .swiper {
+  contain: layout paint;
 }
 
 .project-main {
@@ -512,7 +552,6 @@
 
 .project-slide {
   display: grid;
-  min-height: 100%;
   padding: 32px;
   border-radius: 22px;
   background: var(--espresso);
@@ -541,7 +580,8 @@
 }
 
 .testimonials-section {
-  padding: clamp(74px, 9vw, 124px) 0;
+  overflow: clip;
+  padding: clamp(62px, 8vw, 104px) 0;
   background: var(--cream);
 }
 
@@ -554,7 +594,7 @@
 
 .quote-card {
   display: grid;
-  min-height: 360px;
+  min-height: 300px;
   align-content: space-between;
   padding: clamp(28px, 4vw, 58px);
   border-radius: 22px;
@@ -576,7 +616,7 @@
 }
 
 .testimonial-photo {
-  min-height: 360px;
+  aspect-ratio: 1.55;
 }
 
 .small-quotes {
@@ -588,7 +628,7 @@
 
 .small-quote {
   display: grid;
-  min-height: 280px;
+  min-height: 220px;
   align-content: space-between;
   padding: 28px;
   border-radius: 22px;
@@ -609,7 +649,8 @@
 
 .contact-section {
   position: relative;
-  padding: clamp(74px, 9vw, 128px) 0;
+  overflow: clip;
+  padding: clamp(62px, 8vw, 106px) 0;
   background: var(--ivory);
 }
 
@@ -621,11 +662,12 @@
   border-radius: 28px;
   background: var(--cream);
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 .contact-image {
   position: relative;
-  min-height: 560px;
+  aspect-ratio: 0.9;
 }
 
 .contact-caption {
@@ -647,6 +689,7 @@
 .contact-form-wrap {
   display: grid;
   align-content: center;
+  min-width: 0;
 }
 
 .contact-form {
@@ -761,7 +804,7 @@
   }
 
   .hero-card {
-    min-height: 640px;
+    min-height: 600px;
   }
 
   .hero-slice {
@@ -797,7 +840,7 @@
 
   .wood-object-stage,
   .tree-mask {
-    min-height: 430px;
+    min-height: 0;
   }
 
   .dark-copy .body-copy {
@@ -809,22 +852,24 @@
   }
 
   .contact-image {
-    min-height: 430px;
+    aspect-ratio: 1.35;
   }
 }
 
 @media (max-width: 640px) {
   .hero-card {
-    min-height: 590px;
+    min-height: 560px;
     border-radius: 0 0 22px 22px;
   }
 
   .hero-content {
     padding-top: 86px;
+    width: min(100% - 24px, 560px);
   }
 
   .hero-title {
-    font-size: clamp(56px, 18vw, 78px);
+    font-size: clamp(42px, 13.6vw, 58px);
+    line-height: 0.94;
   }
 
   .about-media,
@@ -840,14 +885,14 @@
   }
 
   .floating-slice {
-    right: -12px;
-    bottom: -20px;
+    right: 0;
+    bottom: 8px;
     width: 128px;
   }
 
   .service-tile,
   .service-tile.large {
-    min-height: 360px;
+    aspect-ratio: 1.08;
   }
 
   .wood-back-word {
@@ -860,7 +905,7 @@
   }
 
   .tree-mask {
-    min-height: 360px;
+    aspect-ratio: 1.05;
   }
 
   .contact-panel {

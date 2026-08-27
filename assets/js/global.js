@@ -75,15 +75,34 @@
   function setupAccordions() {
     document.querySelectorAll("[data-accordion]").forEach(function (accordion) {
       accordion.querySelectorAll("[data-accordion-trigger]").forEach(function (trigger) {
+        var item = trigger.closest("[data-accordion-item]");
+        if (item) {
+          var panel = item.querySelector(".accordion-panel");
+          if (panel) {
+            panel.style.setProperty("--accordion-height", item.classList.contains("is-open") ? panel.scrollHeight + "px" : "0px");
+          }
+        }
+
         trigger.addEventListener("click", function () {
           var item = trigger.closest("[data-accordion-item]");
           if (!item) {
             return;
           }
 
+          var panel = item.querySelector(".accordion-panel");
           var isOpen = item.classList.toggle("is-open");
           trigger.setAttribute("aria-expanded", String(isOpen));
+
+          if (panel) {
+            panel.style.setProperty("--accordion-height", isOpen ? panel.scrollHeight + "px" : "0px");
+          }
         });
+      });
+    });
+
+    window.addEventListener("resize", function () {
+      document.querySelectorAll("[data-accordion-item].is-open .accordion-panel").forEach(function (panel) {
+        panel.style.setProperty("--accordion-height", panel.scrollHeight + "px");
       });
     });
   }
@@ -124,11 +143,14 @@
       }
 
       new window.Swiper(el, {
-        loop: true,
+        loop: slides > 2,
+        grabCursor: true,
         speed: 700,
         slidesPerView: 1,
         spaceBetween: 18,
         watchOverflow: true,
+        touchEventsTarget: "container",
+        loopAdditionalSlides: slides,
         pagination: {
           el: el.querySelector(".swiper-pagination"),
           clickable: true
@@ -145,8 +167,17 @@
 
   function setupParallax() {
     var items = document.querySelectorAll("[data-parallax]");
+    var bgItems = document.querySelectorAll(".dark-mask-section");
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var smallViewport = window.matchMedia("(max-width: 900px)");
 
-    if (!items.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if ((!items.length && !bgItems.length) || reducedMotion.matches || smallViewport.matches) {
+      items.forEach(function (item) {
+        item.style.transform = "";
+      });
+      bgItems.forEach(function (item) {
+        item.style.setProperty("--mask-parallax", "0px");
+      });
       return;
     }
 
@@ -160,6 +191,13 @@
         var clamped = Math.max(0, Math.min(1, progress));
         var offset = (clamped - 0.5) * Number(item.dataset.parallax || 34);
         item.style.transform = "translate3d(0," + offset.toFixed(2) + "px,0)";
+      });
+      bgItems.forEach(function (item) {
+        var rect = item.getBoundingClientRect();
+        var progress = (viewport - rect.top) / (viewport + rect.height);
+        var clamped = Math.max(0, Math.min(1, progress));
+        var offset = (clamped - 0.5) * 26;
+        item.style.setProperty("--mask-parallax", offset.toFixed(2) + "px");
       });
       ticking = false;
     }
