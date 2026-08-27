@@ -977,6 +977,56 @@ svg[aria-hidden] use,
   will-change: transform;
 }
 
+[data-scroll-reveal] {
+  --reveal-y: 18px;
+  --reveal-duration: 760ms;
+  --reveal-delay: 0ms;
+  --reveal-ease: cubic-bezier(.22,.61,.36,1);
+}
+
+.scroll-reveal-ready [data-scroll-reveal]:not(.is-visible) {
+  opacity: 0;
+}
+
+.scroll-reveal-ready [data-scroll-reveal="heading"]:not(.is-visible),
+.scroll-reveal-ready [data-scroll-reveal="text"]:not(.is-visible),
+.scroll-reveal-ready [data-scroll-reveal="card"]:not(.is-visible) {
+  transform: translate3d(0, var(--reveal-y), 0);
+}
+
+.scroll-reveal-ready [data-scroll-reveal="object"]:not(.is-visible) {
+  transform: scale(0.98);
+}
+
+[data-scroll-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.scroll-reveal-ready .wood-steps-boards[data-scroll-reveal="object"]:not(.is-visible) {
+  transform: translateX(-50%) scale(0.98);
+}
+
+.wood-steps-boards[data-scroll-reveal].is-visible {
+  transform: translateX(-50%) scale(1);
+}
+
+[data-scroll-reveal] {
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease) var(--reveal-delay),
+    transform var(--reveal-duration) var(--reveal-ease) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+[data-scroll-reveal="image"] {
+  transition-property: opacity;
+  will-change: opacity;
+}
+
+[data-scroll-reveal].is-visible {
+  will-change: auto;
+}
+
 @media (max-width: 1080px) {
   .header-cta {
     display: none;
@@ -997,6 +1047,11 @@ svg[aria-hidden] use,
 @media (max-width: 900px) {
   :root {
     --header-height: 70px;
+  }
+
+  [data-scroll-reveal] {
+    --reveal-y: 12px;
+    --reveal-duration: 700ms;
   }
 
   body {
@@ -1305,6 +1360,11 @@ svg[aria-hidden] use,
 }
 
 @media (max-width: 640px) {
+  [data-scroll-reveal] {
+    --reveal-y: 10px;
+    --reveal-duration: 680ms;
+  }
+
   .brand span {
     max-width: calc(100vw - 176px);
     white-space: nowrap;
@@ -1379,6 +1439,13 @@ svg[aria-hidden] use,
 
   [data-parallax] {
     transform: none !important;
+    will-change: auto;
+  }
+
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-duration: 0.001ms !important;
     will-change: auto;
   }
 }

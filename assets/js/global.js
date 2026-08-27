@@ -547,9 +547,138 @@
     });
   }
 
+  function setupScrollReveals() {
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var restrictedSelector = ".process-section, .log-build-section, .cutdown-section, .wood-action-section";
+    var passiveParents = ".site-header, .site-footer, .swiper, .mobile-menu, [data-mobile-menu], [data-accordion], .accordion-panel";
+    var textSelector = "h1, h2, main p, main li, .section-kicker, .body-copy, .hero-copy, .legal-content p, .legal-content li, .overview-copy p, .benefit-copy p, .xray-copy p, .wood-action-copy p, .log-build-copy p, .cutdown-copy p";
+    var cardSelector = ".service-card, .service-plan-card, .service-action-card, .wood-step-card, .quote-card, .faq-copy-card, .related-card, .service-review-card, .feature-stat, .overview-point, .benefit-item";
+    var imageSelector = "figure.media img, .tree-mask-photo img, .testimonial-photo img, .contact-image img, .related-card img, .parallax-statement-card img, .process-media img";
+    var objectSelector = ".hero-objects img, .wood-steps-boards, .wood-object-stage, .service-hero-object:not([data-parallax]), .legal-hero-object:not([data-parallax])";
+    var revealItems = [];
+
+    function isPassive(el) {
+      return Boolean(el.closest(passiveParents));
+    }
+
+    function isAllowedInRestrictedSection(el, type) {
+      var section = el.closest(restrictedSelector);
+
+      if (!section) {
+        return true;
+      }
+
+      return (type === "heading" || type === "text") && el.matches(textSelector) && !el.closest("button, [data-cutdown-scene], .cutdown-steps, .log-build-visual, .log-build-actions, .process-media, .service-process, .wood-action-visual, .wood-action-controls");
+    }
+
+    function hasRevealParent(el) {
+      var parent = el.parentElement;
+
+      while (parent) {
+        if (parent.hasAttribute("data-scroll-reveal")) {
+          return true;
+        }
+
+        parent = parent.parentElement;
+      }
+
+      return false;
+    }
+
+    function queueReveal(el, type, index) {
+      if (!el || el.hasAttribute("data-scroll-reveal") || isPassive(el) || !isAllowedInRestrictedSection(el, type)) {
+        return;
+      }
+
+      if ((type === "heading" || type === "text" || type === "image") && hasRevealParent(el)) {
+        return;
+      }
+
+      el.setAttribute("data-scroll-reveal", type);
+
+      if (type === "heading") {
+        el.style.setProperty("--reveal-y", "18px");
+        el.style.setProperty("--reveal-duration", "780ms");
+      } else if (type === "text") {
+        el.style.setProperty("--reveal-y", "14px");
+        el.style.setProperty("--reveal-duration", "700ms");
+      } else if (type === "image") {
+        el.style.setProperty("--reveal-duration", "820ms");
+      } else if (type === "object") {
+        el.style.setProperty("--reveal-duration", "850ms");
+      } else if (type === "card") {
+        el.style.setProperty("--reveal-y", "16px");
+        el.style.setProperty("--reveal-duration", "760ms");
+        el.style.setProperty("--reveal-delay", ((index % 6) * 85) + "ms");
+      }
+
+      revealItems.push(el);
+    }
+
+    document.querySelectorAll(cardSelector).forEach(function (el, index) {
+      queueReveal(el, "card", index);
+    });
+
+    document.querySelectorAll("h1, h2").forEach(function (el) {
+      queueReveal(el, "heading", 0);
+    });
+
+    document.querySelectorAll(textSelector).forEach(function (el) {
+      if (!el.matches("h1, h2")) {
+        queueReveal(el, "text", 0);
+      }
+    });
+
+    document.querySelectorAll(imageSelector).forEach(function (el) {
+      queueReveal(el, "image", 0);
+    });
+
+    document.querySelectorAll(objectSelector).forEach(function (el) {
+      queueReveal(el, el.hasAttribute("data-parallax") ? "image" : "object", 0);
+    });
+
+    if (!revealItems.length) {
+      return;
+    }
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      revealItems.forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+      return;
+    }
+
+    var viewport = window.innerHeight || document.documentElement.clientHeight;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.12
+    });
+
+    revealItems.forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      var earlyReveal = el.closest(".about-section");
+
+      if (rect.top < viewport * (earlyReveal ? 1.18 : 0.92)) {
+        el.classList.add("is-visible");
+      } else {
+        observer.observe(el);
+      }
+    });
+
+    document.documentElement.classList.add("scroll-reveal-ready");
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     applyConfig();
     setupUiIcons();
+    setupScrollReveals();
     setupMenu();
     setupAccordions();
     setupCookieConsent();
