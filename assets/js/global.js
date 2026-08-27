@@ -135,15 +135,31 @@
     }
 
     document.querySelectorAll(".js-swiper").forEach(function (el) {
+      if (el.swiper) {
+        return;
+      }
+
       var wrapper = el.querySelector(".swiper-wrapper");
       var slides = wrapper ? wrapper.children.length : 0;
+      var desktopSlides = Number(el.dataset.slidesDesktop || 1);
+      var minLoopSlides = Math.max(3, desktopSlides * 2);
 
       if (slides < 2) {
         return;
       }
 
+      while (slides < minLoopSlides) {
+        Array.prototype.slice.call(wrapper.children, 0, Math.min(slides, minLoopSlides - slides)).forEach(function (slide) {
+          var clone = slide.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          clone.dataset.loopClone = "true";
+          wrapper.appendChild(clone);
+        });
+        slides = wrapper.children.length;
+      }
+
       new window.Swiper(el, {
-        loop: slides > 2,
+        loop: true,
         grabCursor: true,
         speed: 700,
         slidesPerView: 1,
@@ -157,7 +173,7 @@
         },
         breakpoints: {
           760: {
-            slidesPerView: Number(el.dataset.slidesDesktop || 1),
+            slidesPerView: desktopSlides,
             spaceBetween: 22
           }
         }
@@ -214,6 +230,74 @@
     window.addEventListener("resize", requestUpdate);
   }
 
+  function setupAosVisibilityGuard() {
+    var items = document.querySelectorAll("[data-aos]");
+
+    if (!items.length) {
+      return;
+    }
+
+    if (document.documentElement.dataset.aosGuardReady === "true") {
+      items.forEach(function (item) {
+        if (item.getBoundingClientRect().top < (window.innerHeight || document.documentElement.clientHeight) + 120) {
+          item.classList.add("aos-init", "aos-animate");
+        }
+      });
+      return;
+    }
+
+    document.documentElement.dataset.aosGuardReady = "true";
+
+    function revealPassedItems() {
+      var limit = (window.innerHeight || document.documentElement.clientHeight) + 120;
+
+      items.forEach(function (item) {
+        if (item.getBoundingClientRect().top < limit) {
+          item.classList.add("aos-init", "aos-animate");
+        }
+      });
+    }
+
+    var ticking = false;
+
+    function requestReveal() {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          revealPassedItems();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      items.forEach(function (item) {
+        item.classList.add("aos-init", "aos-animate");
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("aos-init", "aos-animate");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: "0px 0px -6% 0px",
+      threshold: 0.01
+    });
+
+    items.forEach(function (item) {
+      observer.observe(item);
+    });
+
+    revealPassedItems();
+    window.addEventListener("scroll", requestReveal, { passive: true });
+    window.addEventListener("resize", requestReveal);
+  }
+
   function setupForms() {
     document.querySelectorAll("[data-contact-form]").forEach(function (form) {
       var message = form.querySelector("[data-form-message]");
@@ -260,15 +344,19 @@
       window.AOS.init({
         duration: 700,
         once: true,
-        offset: 80
+        offset: 60,
+        disableMutationObserver: true
       });
+      setupAosVisibilityGuard();
 
-      // Images without explicit dimensions can change grid/row heights after
-      // AOS has already cached trigger offsets, leaving later elements (e.g.
-      // grid siblings below a taller image) stuck below their stale reveal
-      // point. Recalculate once everything has finished loading.
       window.addEventListener("load", function () {
-        window.AOS.refresh();
+        window.AOS.refreshHard();
+        setupAosVisibilityGuard();
+        window.setTimeout(function () {
+          document.querySelectorAll("[data-aos]").forEach(function (item) {
+            item.classList.add("aos-init", "aos-animate");
+          });
+        }, 900);
       });
     }
   });
