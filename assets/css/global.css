@@ -277,7 +277,7 @@ a {
   text-transform: uppercase;
   white-space: nowrap;
   box-shadow: 0 9px 0 rgba(18, 11, 8, 0.14), 0 18px 30px rgba(36, 22, 15, 0.14);
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
 }
 
 .header-cta,
@@ -308,7 +308,6 @@ a {
 .header-cta:hover,
 .button:hover,
 .button-dark:hover {
-  transform: translateY(-2px);
   box-shadow: 0 6px 0 rgba(18, 11, 8, 0.16), 0 15px 24px rgba(36, 22, 15, 0.18);
 }
 
@@ -610,7 +609,7 @@ svg[aria-hidden] use,
   line-height: 1;
   text-transform: uppercase;
   box-shadow: 0 5px 0 rgba(18, 11, 8, 0.1), 0 12px 20px rgba(36, 22, 15, 0.1);
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
 }
 
 .arrow-link svg {
@@ -627,7 +626,6 @@ svg[aria-hidden] use,
   background: var(--paper);
   border-color: rgba(185, 123, 61, 0.5);
   box-shadow: 0 3px 0 rgba(18, 11, 8, 0.12), 0 10px 16px rgba(36, 22, 15, 0.13);
-  transform: translateY(-2px);
 }
 
 .service-tile--feature:hover .arrow-link svg,
@@ -948,14 +946,13 @@ svg[aria-hidden] use,
   line-height: 1;
   text-transform: uppercase;
   box-shadow: 0 6px 0 rgba(18, 11, 8, 0.2), 0 12px 20px rgba(36, 22, 15, 0.14);
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .cookie-button:hover {
   background: #332017;
   border-color: rgba(251, 248, 239, 0.26);
   box-shadow: 0 4px 0 rgba(18, 11, 8, 0.22), 0 10px 16px rgba(36, 22, 15, 0.16);
-  transform: translateY(-2px);
 }
 
 .swiper {
@@ -1000,6 +997,17 @@ svg[aria-hidden] use,
 @media (max-width: 900px) {
   :root {
     --header-height: 70px;
+  }
+
+  body {
+    padding-top: var(--header-height);
+  }
+
+  .site-header {
+    position: fixed;
+    right: 0;
+    left: 0;
+    width: 100%;
   }
 
   body.menu-open {

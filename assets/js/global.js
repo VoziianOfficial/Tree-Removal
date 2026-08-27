@@ -487,74 +487,6 @@
     window.addEventListener("resize", requestUpdate);
   }
 
-  function setupAosVisibilityGuard() {
-    var items = document.querySelectorAll("[data-aos]");
-
-    if (!items.length) {
-      return;
-    }
-
-    if (document.documentElement.dataset.aosGuardReady === "true") {
-      items.forEach(function (item) {
-        if (item.getBoundingClientRect().top < (window.innerHeight || document.documentElement.clientHeight) + 120) {
-          item.classList.add("aos-init", "aos-animate");
-        }
-      });
-      return;
-    }
-
-    document.documentElement.dataset.aosGuardReady = "true";
-
-    function revealPassedItems() {
-      var limit = (window.innerHeight || document.documentElement.clientHeight) + 120;
-
-      items.forEach(function (item) {
-        if (item.getBoundingClientRect().top < limit) {
-          item.classList.add("aos-init", "aos-animate");
-        }
-      });
-    }
-
-    var ticking = false;
-
-    function requestReveal() {
-      if (!ticking) {
-        window.requestAnimationFrame(function () {
-          revealPassedItems();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    if (!("IntersectionObserver" in window)) {
-      items.forEach(function (item) {
-        item.classList.add("aos-init", "aos-animate");
-      });
-      return;
-    }
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("aos-init", "aos-animate");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      rootMargin: "0px 0px -6% 0px",
-      threshold: 0.01
-    });
-
-    items.forEach(function (item) {
-      observer.observe(item);
-    });
-
-    revealPassedItems();
-    window.addEventListener("scroll", requestReveal, { passive: true });
-    window.addEventListener("resize", requestReveal);
-  }
-
   function setupForms() {
     document.querySelectorAll("[data-contact-form]").forEach(function (form) {
       var message = form.querySelector("[data-form-message]");
@@ -625,25 +557,5 @@
     setupParallax();
     setupForms();
     setupXraySections();
-
-    if (window.AOS) {
-      window.AOS.init({
-        duration: 700,
-        once: true,
-        offset: 60,
-        disableMutationObserver: true
-      });
-      setupAosVisibilityGuard();
-
-      window.addEventListener("load", function () {
-        window.AOS.refreshHard();
-        setupAosVisibilityGuard();
-        window.setTimeout(function () {
-          document.querySelectorAll("[data-aos]").forEach(function (item) {
-            item.classList.add("aos-init", "aos-animate");
-          });
-        }, 900);
-      });
-    }
   });
 })();
