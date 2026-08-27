@@ -43,15 +43,59 @@
   }
 
   function createIcon(name, className) {
+    var icons = {
+      "arrow-right": [
+        '<path d="M5 12h14"/>',
+        '<path d="m12 5 7 7-7 7"/>'
+      ],
+      "arrow-left": [
+        '<path d="m12 19-7-7 7-7"/>',
+        '<path d="M19 12H5"/>'
+      ],
+      "arrow-up": [
+        '<path d="m5 12 7-7 7 7"/>',
+        '<path d="M12 19V5"/>'
+      ],
+      "arrow-down": [
+        '<path d="M12 5v14"/>',
+        '<path d="m19 12-7 7-7-7"/>'
+      ],
+      "chevron-right": [
+        '<path d="m9 18 6-6-6-6"/>'
+      ],
+      "chevron-down": [
+        '<path d="m6 9 6 6 6-6"/>'
+      ],
+      plus: [
+        '<path d="M5 12h14"/>',
+        '<path d="M12 5v14"/>'
+      ],
+      minus: [
+        '<path d="M5 12h14"/>'
+      ],
+      x: [
+        '<path d="M18 6 6 18"/>',
+        '<path d="m6 6 12 12"/>'
+      ],
+      layers: [
+        '<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.84z"/>',
+        '<path d="m22 12-8.58 3.91a2 2 0 0 1-1.66 0L2 12"/>',
+        '<path d="m22 17-8.58 3.91a2 2 0 0 1-1.66 0L2 17"/>'
+      ]
+    };
     var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
     svg.setAttribute("aria-hidden", "true");
     svg.setAttribute("focusable", "false");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("fill", "none");
+    svg.setAttribute("stroke", "currentColor");
+    svg.setAttribute("stroke-width", "2");
+    svg.setAttribute("stroke-linecap", "round");
+    svg.setAttribute("stroke-linejoin", "round");
     if (className) {
       svg.setAttribute("class", className);
     }
-    use.setAttribute("href", "assets/icons/sprite.svg#icon-" + name);
-    svg.appendChild(use);
+    svg.innerHTML = (icons[name] || icons["chevron-right"]).join("");
     return svg;
   }
 

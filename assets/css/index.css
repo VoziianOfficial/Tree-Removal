@@ -1580,6 +1580,13 @@
   filter: none;
 }
 
+.service-action-icons svg {
+  width: 48%;
+  height: 48%;
+  flex: 0 0 auto;
+  stroke-width: 2;
+}
+
 .service-review-slide p {
   max-width: 360px;
   margin: 0;
@@ -1618,6 +1625,8 @@
 }
 
 .process-step {
+  --process-step-spin: 0deg;
+
   position: relative;
   display: grid;
   place-items: center;
@@ -1640,10 +1649,16 @@
     inset 0 -22px 48px rgba(18, 11, 8, 0.28),
     0 16px 34px rgba(36, 22, 15, 0.14);
   text-align: center;
+  transform: rotate(var(--process-step-spin));
+  transform-origin: center;
   transition:
     border-color 240ms ease,
     box-shadow 240ms ease,
     transform 240ms ease;
+}
+
+.process-step.aos-init.aos-animate {
+  animation: processStepSpin 16s linear infinite;
 }
 
 .process-step::before {
@@ -1676,7 +1691,7 @@
     inset 0 16px 34px rgba(255, 244, 214, 0.2),
     inset 0 -22px 48px rgba(18, 11, 8, 0.3),
     0 24px 52px rgba(36, 22, 15, 0.2);
-  transform: translate3d(0, -6px, 0) scale(1.015);
+  transform: translate3d(0, -6px, 0) rotate(var(--process-step-spin)) scale(1.015);
 }
 
 .process-icon {
@@ -2485,6 +2500,12 @@
 @keyframes marquee {
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes processStepSpin {
+  to {
+    --process-step-spin: 360deg;
   }
 }
 
