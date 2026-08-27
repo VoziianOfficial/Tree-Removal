@@ -34,6 +34,7 @@
     }
 
     setText("[data-config='companyName']", config.companyName);
+    setText("[data-config='companyShortName']", config.companyShortName || config.companyName);
     setText("[data-config='email']", config.email);
     setText("[data-config='disclaimer']", config.disclaimer);
     setAttr("[data-config-logo]", "src", config.logo);
@@ -182,13 +183,17 @@
   }
 
   function setupParallax() {
-    var items = document.querySelectorAll("[data-parallax]");
+    var allItems = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
     var bgItems = document.querySelectorAll(".dark-mask-section");
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var smallViewport = window.matchMedia("(max-width: 900px)");
+    var items = allItems.filter(function (item) {
+      return !smallViewport.matches || item.classList.contains("hero-bg");
+    });
+    var activeBgItems = smallViewport.matches ? [] : Array.prototype.slice.call(bgItems);
 
-    if ((!items.length && !bgItems.length) || reducedMotion.matches || smallViewport.matches) {
-      items.forEach(function (item) {
+    if ((!items.length && !activeBgItems.length) || reducedMotion.matches) {
+      allItems.forEach(function (item) {
         item.style.transform = "";
       });
       bgItems.forEach(function (item) {
@@ -196,6 +201,12 @@
       });
       return;
     }
+
+    allItems.forEach(function (item) {
+      if (items.indexOf(item) === -1) {
+        item.style.transform = "";
+      }
+    });
 
     var ticking = false;
 
@@ -208,7 +219,7 @@
         var offset = (clamped - 0.5) * Number(item.dataset.parallax || 34);
         item.style.transform = "translate3d(0," + offset.toFixed(2) + "px,0)";
       });
-      bgItems.forEach(function (item) {
+      activeBgItems.forEach(function (item) {
         var rect = item.getBoundingClientRect();
         var progress = (viewport - rect.top) / (viewport + rect.height);
         var clamped = Math.max(0, Math.min(1, progress));

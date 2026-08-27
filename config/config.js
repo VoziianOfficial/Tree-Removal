@@ -1,5 +1,6 @@
 window.SiteConfig = {
   companyName: "TimberRoot Tree Removal",
+  companyShortName: "TimberRoot",
   logo: "assets/icons/logo.png",
   favicon: "assets/icons/favicon.png",
   email: "hello@timberroot.example",
