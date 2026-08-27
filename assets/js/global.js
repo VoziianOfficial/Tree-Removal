@@ -262,6 +262,14 @@
         once: true,
         offset: 80
       });
+
+      // Images without explicit dimensions can change grid/row heights after
+      // AOS has already cached trigger offsets, leaving later elements (e.g.
+      // grid siblings below a taller image) stuck below their stale reveal
+      // point. Recalculate once everything has finished loading.
+      window.addEventListener("load", function () {
+        window.AOS.refresh();
+      });
     }
   });
 })();
