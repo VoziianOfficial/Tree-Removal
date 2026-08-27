@@ -1722,8 +1722,15 @@
     transform 220ms ease;
 }
 
+.process-step p[data-scroll-reveal].is-visible {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
 .process-step:hover p,
-.process-step:focus-within p {
+.process-step:focus-within p,
+.process-step:hover p[data-scroll-reveal].is-visible,
+.process-step:focus-within p[data-scroll-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
 }

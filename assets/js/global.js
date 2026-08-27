@@ -568,7 +568,7 @@
         return true;
       }
 
-      return (type === "heading" || type === "text") && el.matches(textSelector) && !el.closest("button, [data-cutdown-scene], .cutdown-steps, .log-build-visual, .log-build-actions, .process-media, .service-process, .wood-action-visual, .wood-action-controls");
+      return (type === "heading" || type === "text") && el.matches(textSelector) && !el.closest("button, [data-cutdown-scene], .cutdown-steps, .log-build-visual, .log-build-actions, .process-media, .process-track, .process-step, .service-process, .wood-action-visual, .wood-action-controls");
     }
 
     function hasRevealParent(el) {
