@@ -634,6 +634,31 @@
   background: var(--deep);
   color: var(--ivory);
   --mask-parallax: 0px;
+  --mask-bg-parallax: 0px;
+  --mask-shape-parallax: 0px;
+  --mask-photo-parallax: 0px;
+}
+
+.dark-mask-section::before {
+  position: absolute;
+  inset: -12% 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(20, 24, 17, 0.86), rgba(20, 24, 17, 0.78)),
+    url("../images/dark-forest-canopy.webp") center / cover;
+  content: "";
+  opacity: 0.58;
+  transform: translate3d(0, var(--mask-bg-parallax), 0);
+  will-change: transform;
+}
+
+.dark-mask-section::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(20, 24, 17, 0.28);
+  content: "";
+  pointer-events: none;
 }
 
 .mask-grid {
@@ -650,6 +675,8 @@
   aspect-ratio: 1.05;
   min-height: 0;
   pointer-events: none;
+  transform: translate3d(0, var(--mask-shape-parallax), 0);
+  will-change: transform;
 }
 
 .tree-mask-photo {
@@ -659,7 +686,7 @@
   border-radius: 26px;
   clip-path: polygon(49% 0, 90% 34%, 72% 34%, 96% 63%, 73% 63%, 73% 100%, 30% 100%, 30% 63%, 5% 63%, 29% 34%, 10% 34%);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.44);
-  transform: translate3d(0, var(--mask-parallax), 0);
+  transform: translate3d(0, var(--mask-photo-parallax), 0);
   will-change: transform;
 }
 
@@ -685,6 +712,11 @@
   gap: 22px;
 }
 
+.dark-copy .display-title {
+  font-size: clamp(40px, 5vw, 82px);
+  white-space: nowrap;
+}
+
 .dark-copy .body-copy {
   color: rgba(251, 248, 239, 0.72);
   text-align: left;
@@ -700,13 +732,29 @@
   position: relative;
   display: grid;
   gap: 8px;
-  padding-right: 72px;
+  padding: 12px 72px 12px 14px;
+  border: 1px solid rgba(251, 248, 239, 0);
+  border-radius: 8px;
+  background: rgba(251, 248, 239, 0);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.benefit:hover,
+.benefit:focus-within {
+  border-color: rgba(251, 248, 239, 0.12);
+  background: rgba(251, 248, 239, 0.07);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+  transform: translate3d(0, -2px, 0);
 }
 
 .benefit .icon-chip {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 12px;
+  right: 12px;
 }
 
 .benefit .icon-chip {
@@ -717,9 +765,10 @@
 .benefit h3 {
   margin: 0;
   font-family: var(--display-font);
-  font-size: clamp(30px, 3vw, 48px);
+  font-size: clamp(22px, 2vw, 34px);
   line-height: 0.95;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .benefit p {
@@ -1217,6 +1266,14 @@
 
   .tree-mask {
     min-height: 0;
+  }
+
+  .dark-copy .display-title {
+    font-size: clamp(38px, 11vw, 70px);
+  }
+
+  .benefit h3 {
+    font-size: clamp(22px, 7vw, 30px);
   }
 
   .wood-feature {
