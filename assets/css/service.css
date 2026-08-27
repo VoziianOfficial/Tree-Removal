@@ -179,6 +179,10 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   font-size: 18px;
 }
 
+.service-faq h2 {
+  margin-bottom: clamp(14px, 2vw, 24px);
+}
+
 .detail-list {
   display: grid;
   gap: 10px;
@@ -917,8 +921,8 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
 .xray-section {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(112px, 0.18fr) minmax(0, 1fr) minmax(150px, 0.2fr);
-  gap: clamp(10px, 1.8vw, 20px);
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 0.2fr);
+  gap: clamp(10px, 1.8vw, 20px) clamp(14px, 2vw, 24px);
   align-items: center;
   min-height: clamp(450px, 42vw, 540px);
   padding: clamp(18px, 2.7vw, 30px);
@@ -937,17 +941,21 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   position: relative;
   z-index: 2;
   display: grid;
-  gap: 7px;
-  align-self: center;
+  grid-column: 1 / -1;
+  justify-items: center;
+  gap: 5px;
+  align-self: end;
+  text-align: center;
 }
 
 .xray-copy h2 {
   margin: 0;
   color: var(--bark);
   font-family: var(--display-font);
-  font-size: clamp(25px, 2.8vw, 38px);
-  line-height: 0.95;
+  font-size: clamp(31px, 4.2vw, 56px);
+  line-height: 0.9;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .xray-object {
@@ -1093,6 +1101,7 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   .xray-copy {
     align-self: auto;
     max-width: 560px;
+    justify-self: center;
     padding-top: 0;
   }
 
@@ -1227,7 +1236,7 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   }
 
   .xray-copy h2 {
-    font-size: clamp(30px, 9vw, 40px);
+    font-size: clamp(26px, 7.7vw, 36px);
   }
 
   .xray-object {
