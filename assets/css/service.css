@@ -388,13 +388,22 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
 }
 
 .wood-action-controls {
+  --wood-action-button-width: 86px;
+
   display: grid;
+  grid-template-columns: var(--wood-action-button-width);
   gap: 8px;
   justify-self: end;
-  width: min(100%, 154px);
+  width: var(--wood-action-button-width);
+  max-width: 100%;
+}
+
+[data-wood-action="stump"] .wood-action-controls {
+  --wood-action-button-width: 116px;
 }
 
 .wood-action-controls button {
+  width: 100%;
   min-height: 40px;
   padding: 9px 13px;
   border: 1px solid rgba(111, 71, 41, 0.22);
@@ -915,6 +924,19 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
     grid-template-columns: 1fr;
   }
 
+  .service-hero-grid {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .service-hero h1 {
+    text-align: center;
+  }
+
+  .service-hero p {
+    margin-inline: auto;
+  }
+
   .service-sidebar {
     position: static;
     grid-row: 1;
@@ -939,7 +961,7 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   }
 
   .service-hero-object {
-    justify-self: start;
+    justify-self: center;
   }
 
   .service-cta {
@@ -952,7 +974,7 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   }
 
   body[data-page-title^="Stump Grinding"] .service-hero-object {
-    justify-self: end;
+    justify-self: center;
     transform: translate3d(0, clamp(44px, 6vw, 66px), 0) scale(1.32) !important;
   }
 }
@@ -1043,9 +1065,16 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   }
 
   .wood-action-controls {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    justify-self: stretch;
-    width: 100%;
+    --wood-action-button-width: 78px;
+
+    grid-template-columns: repeat(3, var(--wood-action-button-width));
+    justify-self: center;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  [data-wood-action="stump"] .wood-action-controls {
+    --wood-action-button-width: clamp(92px, 26vw, 104px);
   }
 
   .wood-action-controls button {
