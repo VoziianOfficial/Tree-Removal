@@ -914,6 +914,117 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   transform: translate(18px, 22px);
 }
 
+.xray-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(112px, 0.18fr) minmax(0, 1fr) minmax(150px, 0.2fr);
+  gap: clamp(10px, 1.8vw, 20px);
+  align-items: center;
+  min-height: clamp(450px, 42vw, 540px);
+  padding: clamp(18px, 2.7vw, 30px);
+  overflow: clip;
+  border: 1px solid rgba(111, 71, 41, 0.13);
+  border-radius: 14px;
+  background: #fbf5e9;
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255, 253, 247, 0.9);
+  --xray-x: 50%;
+  --xray-y: 50%;
+  --xray-lens-size: clamp(112px, 12vw, 148px);
+}
+
+.xray-copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 7px;
+  align-self: center;
+}
+
+.xray-copy h2 {
+  margin: 0;
+  color: var(--bark);
+  font-family: var(--display-font);
+  font-size: clamp(25px, 2.8vw, 38px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.xray-object {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: clamp(360px, 35vw, 460px);
+  margin: 0;
+  touch-action: none;
+  cursor: none;
+  isolation: isolate;
+}
+
+.xray-layer {
+  grid-area: 1 / 1;
+  display: block;
+  width: 100%;
+  max-width: 880px;
+  max-height: clamp(350px, 36vw, 470px);
+  object-fit: contain;
+  filter: drop-shadow(0 18px 22px rgba(36, 22, 15, 0.12));
+  user-select: none;
+  pointer-events: none;
+}
+
+.xray-layer-reveal {
+  -webkit-mask-image: radial-gradient(circle var(--xray-lens-size) at var(--xray-x) var(--xray-y), #000 0 50%, transparent 51%);
+  mask-image: radial-gradient(circle var(--xray-lens-size) at var(--xray-x) var(--xray-y), #000 0 50%, transparent 51%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.xray-lens {
+  position: absolute;
+  top: var(--xray-y);
+  left: var(--xray-x);
+  z-index: 3;
+  width: var(--xray-lens-size);
+  aspect-ratio: 1;
+  border: 1px solid rgba(67, 43, 28, 0.62);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.xray-notes {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 9px;
+  align-self: center;
+}
+
+.xray-notes span {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  color: var(--bark);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.xray-notes svg {
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  border: 1px solid rgba(111, 71, 41, 0.18);
+  border-radius: 50%;
+  color: var(--caramel);
+}
+
 @media (max-width: 1080px) {
   .service-layout,
   .service-hero-grid,
@@ -971,6 +1082,32 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
   .service-cta img {
     width: min(250px, 38vw);
     justify-self: end;
+  }
+
+  .xray-section {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: clamp(20px, 4vw, 30px);
+  }
+
+  .xray-copy {
+    align-self: auto;
+    max-width: 560px;
+    padding-top: 0;
+  }
+
+  .xray-object {
+    min-height: clamp(280px, 46vw, 380px);
+  }
+
+  .xray-layer {
+    max-height: clamp(280px, 46vw, 380px);
+  }
+
+  .xray-notes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-self: auto;
+    padding-bottom: 0;
   }
 
   body[data-page-title^="Stump Grinding"] .service-hero-object {
@@ -1076,6 +1213,48 @@ body[data-page-title^="Stump Grinding"] .service-hero-object {
     width: 128px;
     max-height: 112px;
     transform: translate(28px, 12px);
+  }
+
+  .xray-section {
+    gap: 12px;
+    padding: 18px;
+    border-radius: 14px;
+    --xray-lens-size: clamp(92px, 30vw, 120px);
+  }
+
+  .xray-copy {
+    gap: 5px;
+  }
+
+  .xray-copy h2 {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
+  .xray-object {
+    min-height: clamp(218px, 66vw, 310px);
+  }
+
+  .xray-layer {
+    width: 100%;
+    max-width: none;
+    max-height: clamp(220px, 68vw, 310px);
+  }
+
+  .xray-notes {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .xray-notes span {
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .xray-notes svg {
+    width: 26px;
+    height: 26px;
+    padding: 5px;
   }
 
   .process-section {

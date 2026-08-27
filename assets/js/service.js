@@ -93,4 +93,31 @@
       setState("idle", null);
     });
   });
+
+  var xraySections = document.querySelectorAll("[data-xray-section]");
+
+  xraySections.forEach(function (section) {
+    var object = section.querySelector("[data-xray-object]");
+
+    if (!object) {
+      return;
+    }
+
+    function moveLens(clientX, clientY) {
+      var rect = object.getBoundingClientRect();
+      var x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      var y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+
+      section.style.setProperty("--xray-x", (x * 100).toFixed(2) + "%");
+      section.style.setProperty("--xray-y", (y * 100).toFixed(2) + "%");
+    }
+
+    object.addEventListener("pointermove", function (event) {
+      moveLens(event.clientX, event.clientY);
+    });
+
+    object.addEventListener("pointerdown", function (event) {
+      moveLens(event.clientX, event.clientY);
+    });
+  });
 })();
