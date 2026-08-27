@@ -348,13 +348,15 @@
           </figure>
           <div class="contact-form-wrap">
             <p class="section-kicker">Request scope help</p>
-            <h2 class="display-title">Compare</h2>
+            <h2 class="display-title contact-title">Project <span class="title-accent">Scope</span></h2>
             <form class="contact-form" action="contact.php" method="post" data-contact-form>
-              <label>Full Name<input type="text" name="name" autocomplete="name" required></label>
-              <label>Email<input type="email" name="email" autocomplete="email" required></label>
-              <label>Service<select name="service" required><option value="">Select service</option><option>Tree Removal</option><option>Stump Grinding</option><option>Tree Trimming</option><option>Storm Damage Cleanup</option></select></label>
-              <label class="full">Message<textarea name="message" rows="5" required></textarea></label>
-              <button class="button-dark" type="submit">Request an Estimate</button>
+              <label>Full Name<input type="text" name="name" autocomplete="name" placeholder="Your name" required></label>
+              <label>Phone<input type="tel" name="phone" autocomplete="tel" placeholder="Best number"></label>
+              <label>Email<input type="email" name="email" autocomplete="email" placeholder="Email address" required></label>
+              <label>Service<select name="service" required><option value="">Select service</option><option>Tree Removal</option><option>Stump Grinding</option><option>Tree Trimming</option><option>Storm Damage Cleanup</option><option>Brush & Debris Hauling</option></select></label>
+              <label class="full">Property Access<input type="text" name="property_access" placeholder="Backyard, driveway, slope, gate width"></label>
+              <label class="full">Tree Details<textarea name="message" rows="4" placeholder="Tree size, damage, nearby roof or wires, and cleanup needs" required></textarea></label>
+              <button class="button-dark" type="submit">Request an Estimate <svg aria-hidden="true"><use href="assets/icons/sprite.svg#icon-arrow-right"/></svg></button>
               <p class="form-message" data-form-message role="status"></p>
             </form>
           </div>
@@ -374,7 +376,6 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="footer-logo-row"><img loading="lazy" data-config-logo src="assets/icons/logo.png" width="46" height="46" alt=""><span data-config="companyShortName">TimberRoot</span></span>
-        <h2 class="footer-title">Start</h2>
         <p class="site-disclaimer" data-config="disclaimer"></p>
         <a class="button" href="#contact">Contact Us</a>
       </div>
